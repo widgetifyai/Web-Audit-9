@@ -17,7 +17,7 @@ const DESCRIPTION =
 
 export const Route = createFileRoute("/report/$id")({
   validateSearch: (search: Record<string, unknown>) => ({
-    d: typeof search.d === "string" ? search.d : undefined,
+    d: typeof search["d"] === "string" ? (search["d"] as string) : undefined,
   }),
   head: () => ({
     meta: [
