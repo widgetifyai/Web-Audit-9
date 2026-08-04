@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,6 +36,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportIdRoute = ReportIdRouteImport.update({
   id: '/report/$id',
   path: '/report/$id',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,22 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/history' | '/privacy' | '/report/$id'
+  fullPaths: '/' | '/about' | '/history' | '/privacy' | '/terms' | '/report/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/history' | '/privacy' | '/report/$id'
-  id: '__root__' | '/' | '/about' | '/history' | '/privacy' | '/report/$id'
+  to: '/' | '/about' | '/history' | '/privacy' | '/terms' | '/report/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/history'
+    | '/privacy'
+    | '/terms'
+    | '/report/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +92,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   HistoryRoute: typeof HistoryRoute
   PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
   ReportIdRoute: typeof ReportIdRoute
 }
 
@@ -109,6 +126,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/report/$id': {
       id: '/report/$id'
       path: '/report/$id'
@@ -124,6 +148,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   HistoryRoute: HistoryRoute,
   PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
   ReportIdRoute: ReportIdRoute,
 }
 export const routeTree = rootRouteImport
