@@ -16,9 +16,8 @@ const DESCRIPTION =
   "A full WebAudit audit report with overall score, category breakdown, executive summary and prioritised AI recommendations.";
 
 export const Route = createFileRoute("/report/$id")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    d: typeof search["d"] === "string" ? (search["d"] as string) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { d?: string } =>
+    typeof search["d"] === "string" ? { d: search["d"] as string } : {},
   head: () => ({
     meta: [
       { title: TITLE },
