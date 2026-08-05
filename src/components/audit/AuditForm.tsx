@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, Globe, Loader2 } from "lucide-react";
+import { ArrowRight, Globe, Loader2, Lock } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -9,6 +9,8 @@ import { Progress } from "@/components/ui/progress";
 import { saveAudit } from "@/lib/audit-history";
 import { normalizeUrl } from "@/lib/audit-types";
 import { runAudit } from "@/lib/audit.functions";
+import { useCommunityProgress } from "@/lib/community";
+import { CommunityOnboarding } from "@/components/audit/CommunityOnboarding";
 import { cn } from "@/lib/utils";
 
 const STAGES = [
@@ -25,6 +27,8 @@ const STAGES = [
 export function AuditForm({ className }: { className?: string }) {
   const navigate = useNavigate();
   const audit = useServerFn(runAudit);
+  const { unlocked, hydrated, count, total } = useCommunityProgress();
+  const [showGate, setShowGate] = useState(false);
   const [url, setUrl] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [running, setRunning] = useState(false);
@@ -38,6 +42,10 @@ export function AuditForm({ className }: { className?: string }) {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (running) return;
+    if (!unlocked) {
+      setShowGate(true);
+      return;
+    }
 
     const normalized = normalizeUrl(url);
     if (!normalized) {
@@ -102,11 +110,14 @@ export function AuditForm({ className }: { className?: string }) {
             />
           </div>
           <Button type="submit" size="lg" variant="hero" disabled={running} className="shrink-0">
+            {!hydrated || unlocked ? null : <Lock className="size-4" aria-hidden />}
             {running ? (
               <>
                 <Loader2 className="size-4 animate-spin" aria-hidden />
                 Auditing…
               </>
+            ) : hydrated && !unlocked ? (
+              "Unlock free audit"
             ) : (
               <>
                 Start Free Audit
@@ -116,6 +127,26 @@ export function AuditForm({ className }: { className?: string }) {
           </Button>
         </div>
       </form>
+
+      {hydrated && !unlocked ? (
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5">
+            <Lock className="size-3.5" aria-hidden />
+            Community onboarding required — {count} of {total} completed
+          </span>
+          <button
+            type="button"
+            onClick={() => setShowGate((s) => !s)}
+            className="font-medium text-primary underline-offset-4 hover:underline"
+          >
+            {showGate ? "Hide steps" : "Show the 6 steps"}
+          </button>
+        </div>
+      ) : null}
+
+      {hydrated && !unlocked && showGate ? (
+        <CommunityOnboarding className="mt-4 animate-rise text-left" />
+      ) : null}
 
       {error ? (
         <p role="alert" className="mt-3 text-sm text-danger">

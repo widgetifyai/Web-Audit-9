@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Gauge, Github, Linkedin, Twitter } from "lucide-react";
+import { Gauge } from "lucide-react";
+
+import { CommunityLinks } from "@/components/audit/CommunityLinks";
 
 export function SiteFooter() {
   return (
@@ -41,6 +43,11 @@ export function SiteFooter() {
                   Audit history
                 </Link>
               </li>
+              <li>
+                <Link to="/community" className="transition-colors hover:text-foreground">
+                  Community
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -77,7 +84,15 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center">
+        <div className="mt-12 border-t border-border/60 pt-8">
+          <h3 className="text-sm font-semibold">Community</h3>
+          <p className="mt-1.5 max-w-md text-sm text-muted-foreground">
+            Follow along and get help with your audit findings from other builders.
+          </p>
+          <CommunityLinks className="mt-4" />
+        </div>
+
+        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center">
           <div className="space-y-1">
             <p className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} WebAudit. All rights reserved.
@@ -94,25 +109,12 @@ export function SiteFooter() {
               </a>
             </p>
           </div>
-          <div className="flex items-center gap-3 text-muted-foreground">
-            <a href="https://x.com" aria-label="WebAudit on X" className="transition-colors hover:text-foreground">
-              <Twitter className="size-4" aria-hidden />
-            </a>
-            <a
-              href="https://linkedin.com"
-              aria-label="WebAudit on LinkedIn"
-              className="transition-colors hover:text-foreground"
-            >
-              <Linkedin className="size-4" aria-hidden />
-            </a>
-            <a
-              href="https://github.com"
-              aria-label="WebAudit on GitHub"
-              className="transition-colors hover:text-foreground"
-            >
-              <Github className="size-4" aria-hidden />
-            </a>
-          </div>
+          <Link
+            to="/community"
+            className="text-xs font-medium text-primary underline-offset-4 hover:underline"
+          >
+            Join the Widgetify community →
+          </Link>
         </div>
       </div>
     </footer>
