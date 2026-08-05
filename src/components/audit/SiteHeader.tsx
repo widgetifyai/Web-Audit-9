@@ -11,7 +11,7 @@ export function SiteHeader() {
           <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-[image:var(--gradient-primary)] text-primary-foreground">
             <Gauge className="size-5" aria-hidden />
           </span>
-          <span className="truncate font-display text-lg font-bold">Widgetify</span>
+          <span className="truncate font-display text-lg font-bold">WebAudit</span>
         </Link>
         <nav className="flex items-center gap-1 sm:gap-2">
           <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">

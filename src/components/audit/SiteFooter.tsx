@@ -11,7 +11,7 @@ export function SiteFooter() {
               <span className="grid size-9 place-items-center rounded-xl bg-[image:var(--gradient-primary)] text-primary-foreground">
                 <Gauge className="size-5" aria-hidden />
               </span>
-              <span className="font-display text-lg font-bold">Widgetify</span>
+              <span className="font-display text-lg font-bold">WebAudit</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               AI-powered website audits that turn technical detail into decisions your business can
@@ -49,7 +49,7 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
               <li>
                 <Link to="/about" className="transition-colors hover:text-foreground">
-                  About Widgetify
+                  About WebAudit
                 </Link>
               </li>
               <li>
@@ -78,23 +78,36 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Widgetify. All rights reserved.
-          </p>
+          <div className="space-y-1">
+            <p className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} WebAudit. All rights reserved.
+            </p>
+            <p className="text-xs text-muted-foreground">
+              The platform created by{" "}
+              <a
+                href="https://widgetifyai.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-primary underline-offset-4 hover:underline"
+              >
+                Widgetify
+              </a>
+            </p>
+          </div>
           <div className="flex items-center gap-3 text-muted-foreground">
-            <a href="https://x.com" aria-label="Widgetify on X" className="transition-colors hover:text-foreground">
+            <a href="https://x.com" aria-label="WebAudit on X" className="transition-colors hover:text-foreground">
               <Twitter className="size-4" aria-hidden />
             </a>
             <a
               href="https://linkedin.com"
-              aria-label="Widgetify on LinkedIn"
+              aria-label="WebAudit on LinkedIn"
               className="transition-colors hover:text-foreground"
             >
               <Linkedin className="size-4" aria-hidden />
             </a>
             <a
               href="https://github.com"
-              aria-label="Widgetify on GitHub"
+              aria-label="WebAudit on GitHub"
               className="transition-colors hover:text-foreground"
             >
               <Github className="size-4" aria-hidden />

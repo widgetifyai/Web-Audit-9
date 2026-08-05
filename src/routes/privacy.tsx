@@ -3,9 +3,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteFooter } from "@/components/audit/SiteFooter";
 import { SiteHeader } from "@/components/audit/SiteHeader";
 
-const TITLE = "Privacy Policy — Widgetify";
+const TITLE = "Privacy Policy — WebAudit";
 const DESCRIPTION =
-  "How Widgetify handles the websites you audit, what we store, and what stays on your device.";
+  "How WebAudit handles the websites you audit, what we store, and what stays on your device.";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -28,7 +28,7 @@ function PrivacyPage() {
       <main className="mx-auto max-w-3xl px-5 py-16">
         <h1 className="text-4xl font-bold">Privacy Policy</h1>
         <p className="mt-3 text-sm text-muted-foreground">
-          This page is maintained by Widgetify to describe how the audit tool handles data.
+          This page is maintained by WebAudit to describe how the audit tool handles data.
         </p>
         <div className="mt-8 space-y-8 text-base leading-relaxed text-muted-foreground">
           <section>
@@ -43,7 +43,7 @@ function PrivacyPage() {
             <h2 className="text-xl font-semibold text-foreground">What we store</h2>
             <p className="mt-2">
               Finished reports are saved in your own browser's local storage. They are not written
-              to a Widgetify database and are not visible to us. Clearing your browser data removes
+              to a WebAudit database and are not visible to us. Clearing your browser data removes
               them permanently.
             </p>
           </section>
@@ -65,7 +65,7 @@ function PrivacyPage() {
           <section>
             <h2 className="text-xl font-semibold text-foreground">Contact</h2>
             <p className="mt-2">
-              Questions about this policy can be sent to privacy@widgetify.app.
+              Questions about this policy can be sent to privacy@webaudit.app.
             </p>
           </section>
         </div>

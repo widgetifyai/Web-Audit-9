@@ -26,7 +26,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const TITLE = "Widgetify — AI Website Audit in Under a Minute";
+const TITLE = "WebAudit — AI Website Audit in Under a Minute";
 const DESCRIPTION =
   "Analyze any website and get an actionable report covering performance, SEO, accessibility, mobile, UX, conversion and security.";
 

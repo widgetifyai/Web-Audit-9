@@ -3,9 +3,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteFooter } from "@/components/audit/SiteFooter";
 import { SiteHeader } from "@/components/audit/SiteHeader";
 
-const TITLE = "About Widgetify — Website Audits Without the Jargon";
+const TITLE = "About WebAudit — Website Audits Without the Jargon";
 const DESCRIPTION =
-  "Widgetify turns technical website measurements into clear, prioritised actions for founders, marketers and developers.";
+  "WebAudit turns technical website measurements into clear, prioritised actions for founders, marketers and developers.";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -26,11 +26,11 @@ function AboutPage() {
     <div className="min-h-dvh">
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-5 py-16">
-        <h1 className="text-4xl font-bold">About Widgetify</h1>
+        <h1 className="text-4xl font-bold">About WebAudit</h1>
         <div className="mt-6 space-y-5 text-base leading-relaxed text-muted-foreground">
           <p>
             Most website audit tools produce a wall of technical warnings and leave you to work out
-            what matters. Widgetify exists to do the opposite: measure carefully, then explain
+            what matters. WebAudit exists to do the opposite: measure carefully, then explain
             plainly.
           </p>
           <p>

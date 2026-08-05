@@ -78,13 +78,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Widgetify — AI Website Audits" },
+      { title: "WebAudit — AI Website Audits" },
       {
         name: "description",
         content:
           "Analyze any website in under a minute and get an actionable report across performance, SEO, accessibility, UX, security and conversion.",
       },
-      { name: "author", content: "Widgetify" },
+      { name: "author", content: "WebAudit" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

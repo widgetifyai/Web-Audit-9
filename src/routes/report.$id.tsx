@@ -11,14 +11,13 @@ import { decodeReport, getAudit } from "@/lib/audit-history";
 import type { AuditReport } from "@/lib/audit-types";
 import { SAMPLE_REPORT } from "@/lib/sample-report";
 
-const TITLE = "Website Audit Report — Widgetify";
+const TITLE = "Website Audit Report — WebAudit";
 const DESCRIPTION =
-  "A full Widgetify audit report with overall score, category breakdown, executive summary and prioritised AI recommendations.";
+  "A full WebAudit audit report with overall score, category breakdown, executive summary and prioritised AI recommendations.";
 
 export const Route = createFileRoute("/report/$id")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    d: typeof search["d"] === "string" ? (search["d"] as string) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { d?: string } =>
+    typeof search["d"] === "string" ? { d: search["d"] as string } : {},
   head: () => ({
     meta: [
       { title: TITLE },

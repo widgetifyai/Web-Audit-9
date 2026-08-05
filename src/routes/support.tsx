@@ -4,8 +4,8 @@ import { LifeBuoy, Mail, MessageSquare } from "lucide-react";
 import { SiteFooter } from "@/components/audit/SiteFooter";
 import { SiteHeader } from "@/components/audit/SiteHeader";
 
-const TITLE = "Contact & Support — Widgetify";
-const DESCRIPTION = "Get help with a Widgetify audit report, billing question or feature request.";
+const TITLE = "Contact & Support — WebAudit";
+const DESCRIPTION = "Get help with a WebAudit audit report, billing question or feature request.";
 
 export const Route = createFileRoute("/support")({
   head: () => ({
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/support")({
 });
 
 const CHANNELS = [
-  { icon: Mail, title: "Email us", copy: "support@widgetify.app — we reply within one business day." },
+  { icon: Mail, title: "Email us", copy: "support@webaudit.app — we reply within one business day." },
   { icon: MessageSquare, title: "Report an issue", copy: "Send the share link of the report and what looked wrong." },
   { icon: LifeBuoy, title: "Feature requests", copy: "Tell us which category you want analysed more deeply." },
 ];

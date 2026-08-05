@@ -3,8 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteFooter } from "@/components/audit/SiteFooter";
 import { SiteHeader } from "@/components/audit/SiteHeader";
 
-const TITLE = "Terms of Service — Widgetify";
-const DESCRIPTION = "The terms that apply when you use the Widgetify website audit tool.";
+const TITLE = "Terms of Service — WebAudit";
+const DESCRIPTION = "The terms that apply when you use the WebAudit website audit tool.";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -30,7 +30,7 @@ function TermsPage() {
           <section>
             <h2 className="text-xl font-semibold text-foreground">Acceptable use</h2>
             <p className="mt-2">
-              Audit websites you own or have permission to analyse. Do not use Widgetify to place
+              Audit websites you own or have permission to analyse. Do not use WebAudit to place
               unreasonable load on third-party servers or to gather data for abusive purposes.
             </p>
           </section>
@@ -51,7 +51,7 @@ function TermsPage() {
           </section>
           <section>
             <h2 className="text-xl font-semibold text-foreground">Contact</h2>
-            <p className="mt-2">Questions about these terms: legal@widgetify.app.</p>
+            <p className="mt-2">Questions about these terms: legal@webaudit.app.</p>
           </section>
         </div>
       </main>

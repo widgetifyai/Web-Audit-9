@@ -18,7 +18,7 @@ export function BrowserMockup() {
         <span className="size-2.5 rounded-full bg-warning/70" />
         <span className="size-2.5 rounded-full bg-success/70" />
         <div className="ml-3 flex-1 truncate rounded-lg bg-background/70 px-3 py-1 text-xs text-muted-foreground">
-          widgetify.app/report/northstar-supply
+          webaudit.app/report/northstar-supply
         </div>
       </div>
 
