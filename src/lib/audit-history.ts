@@ -1,7 +1,7 @@
 import type { AuditReport } from "./audit-types";
 
-const KEY = "widgetify.audits.v1";
-const FAV_KEY = "widgetify.audits.favorites.v1";
+const KEY = "webaudit.audits.v1";
+const FAV_KEY = "webaudit.audits.favorites.v1";
 
 function safeParse<T>(raw: string | null, fallback: T): T {
   if (!raw) return fallback;

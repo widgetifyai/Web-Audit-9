@@ -71,7 +71,7 @@ export async function collectSignals(url: string): Promise<SiteSignals> {
       redirect: "follow",
       signal: controller.signal,
       headers: {
-        "user-agent": "Mozilla/5.0 (compatible; WidgetifyAudit/1.0; +https://widgetify.app)",
+        "user-agent": "Mozilla/5.0 (compatible; WebAuditAudit/1.0; +https://webaudit.app)",
         accept: "text/html,application/xhtml+xml",
       },
     });

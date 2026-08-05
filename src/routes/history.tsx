@@ -13,9 +13,9 @@ import { deleteAudit, listAudits, listFavorites, toggleFavorite } from "@/lib/au
 import { scoreTone, type AuditReport } from "@/lib/audit-types";
 import { cn } from "@/lib/utils";
 
-const TITLE = "Audit History — Widgetify";
+const TITLE = "Audit History — WebAudit";
 const DESCRIPTION =
-  "Browse, search, favourite and compare every website audit you've run with Widgetify.";
+  "Browse, search, favourite and compare every website audit you've run with WebAudit.";
 
 export const Route = createFileRoute("/history")({
   head: () => ({
