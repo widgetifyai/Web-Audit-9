@@ -1,9 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import {
   ArrowLeft,
+  Bookmark,
   Check,
   Copy,
   Download,
+  Eye,
   Printer,
   Share2,
   Sparkles,
@@ -11,21 +13,41 @@ import {
   TrendingDown,
   TrendingUp,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
 import { DifficultyBadge, PriorityBadge } from "@/components/audit/PriorityBadge";
+import { ReAuditPrompt } from "@/components/audit/ReAuditPrompt";
 import { ScoreBar, ScoreRing } from "@/components/audit/ScoreRing";
+import { ShareKit } from "@/components/audit/ShareKit";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { encodeReport, listFavorites, toggleFavorite } from "@/lib/audit-history";
+import {
+  addToDirectory,
+  encodeReport,
+  getPreviousAudit,
+  isInDirectory,
+  listFavorites,
+  toggleFavorite,
+} from "@/lib/audit-history";
 import { PRIORITY_ORDER, scoreLabel, scoreTone, type AuditReport } from "@/lib/audit-types";
+import { evaluateAuditAchievements, unlockAndNotify } from "@/lib/growth";
 import { cn } from "@/lib/utils";
 
 const TONE_TEXT = {
