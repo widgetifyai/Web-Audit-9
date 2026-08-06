@@ -138,7 +138,7 @@ export function ShareKit({ report }: ShareKitProps) {
                 Facebook
               </Button>
               <Button variant="soft" onClick={() => shareTo("whatsapp")}>
-                <Whatsapp className="mr-2 size-4" aria-hidden />
+                <MessageCircle className="mr-2 size-4" aria-hidden />
                 WhatsApp
               </Button>
             </div>
