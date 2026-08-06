@@ -146,10 +146,20 @@ export function ReportView({ report }: { report: AuditReport }) {
             <Copy className="size-4" aria-hidden />
             Copy
           </Button>
-          <Button variant="soft" size="sm" onClick={share}>
-            <Share2 className="size-4" aria-hidden />
-            Share
-          </Button>
+          <Dialog open={shareOpen} onOpenChange={setShareOpen}>
+            <DialogTrigger asChild>
+              <Button variant="soft" size="sm">
+                <Share2 className="size-4" aria-hidden />
+                Share
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-lg">
+              <DialogHeader>
+                <DialogTitle>Share this audit</DialogTitle>
+              </DialogHeader>
+              <ShareKit report={report} onClose={() => setShareOpen(false)} />
+            </DialogContent>
+          </Dialog>
           <Button variant="soft" size="sm" onClick={() => window.print()}>
             <Printer className="size-4" aria-hidden />
             Print
