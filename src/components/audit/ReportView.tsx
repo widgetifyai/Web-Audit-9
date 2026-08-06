@@ -264,6 +264,49 @@ export function ReportView({ report }: { report: AuditReport }) {
         </div>
       </section>
 
+      <section className="surface-card mt-6 p-6 no-print">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div className="flex-1">
+            <h2 className="flex items-center gap-2 text-lg font-bold">
+              <Eye className="size-5 text-primary" aria-hidden />
+              Grow this audit
+            </h2>
+            <p className="mt-2 max-w-xl text-sm text-muted-foreground">
+              Add this report to the public directory, embed a score badge, or share it with your community to drive discovery.
+            </p>
+            <ReAuditPrompt hostname={hostname} />
+          </div>
+          <div className="flex min-w-[18rem] flex-col gap-4">
+            <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface-2 p-4">
+              <div className="flex items-center gap-3">
+                <Bookmark className={cn("size-5", inDirectory ? "fill-primary text-primary" : "text-muted-foreground")} aria-hidden />
+                <div>
+                  <Label htmlFor="directory-toggle" className="text-sm font-semibold">
+                    Public directory
+                  </Label>
+                  <p className="text-xs text-muted-foreground">{inDirectory ? "Listed" : "Not listed"}</p>
+                </div>
+              </div>
+              <Switch
+                id="directory-toggle"
+                checked={inDirectory}
+                onCheckedChange={toggleDirectory}
+                aria-label="Add to public directory"
+              />
+            </div>
+            <div className="rounded-xl border border-border bg-surface-2 p-4">
+              <Label className="text-sm font-semibold">Score badge</Label>
+              <div className="mt-2 flex items-center gap-2">
+                <Input readOnly value={badgeSnippet} className="h-9 text-[10px]" />
+                <Button size="icon" variant="soft" onClick={copyBadge} aria-label="Copy badge code">
+                  {badgeCopied ? <Check className="size-4 text-success" /> : <Copy className="size-4" />}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Tabs defaultValue="recommendations" className="mt-8">
         <TabsList className="no-print">
           <TabsTrigger value="recommendations">AI recommendations</TabsTrigger>
