@@ -274,7 +274,7 @@ export function ReportView({ report }: { report: AuditReport }) {
             <p className="mt-2 max-w-xl text-sm text-muted-foreground">
               Add this report to the public directory, embed a score badge, or share it with your community to drive discovery.
             </p>
-            <ReAuditPrompt hostname={hostname} />
+            <ReAuditPrompt hostname={hostname} url={report.url} />
           </div>
           <div className="flex min-w-[18rem] flex-col gap-4">
             <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface-2 p-4">
