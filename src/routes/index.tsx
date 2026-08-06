@@ -229,6 +229,8 @@ function Index() {
             </Accordion>
           </div>
         </section>
+
+        <ProWaitlist />
       </main>
 
       <SiteFooter />
