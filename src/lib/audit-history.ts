@@ -164,14 +164,16 @@ export function getAuditsByHostname(hostname: string): AuditReport[] {
 
 export function getLastAuditDate(hostname: string): Date | null {
   const audits = getAuditsByHostname(hostname);
-  if (audits.length === 0) return null;
-  return new Date(audits[0].createdAt);
+  const latest = audits[0];
+  if (!latest) return null;
+  return new Date(latest.createdAt);
 }
 
 export function getScoreTrend(hostname: string): { previous: number | null; current: number | null; change: number | null } {
   const audits = getAuditsByHostname(hostname);
-  if (audits.length === 0) return { previous: null, current: null, change: null };
-  const current = audits[0].overallScore;
+  const currentAudit = audits[0];
+  if (!currentAudit) return { previous: null, current: null, change: null };
+  const current = currentAudit.overallScore;
   const previous = audits[1]?.overallScore ?? null;
   return { previous, current, change: previous === null ? null : current - previous };
 }
