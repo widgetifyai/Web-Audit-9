@@ -56,7 +56,7 @@ const CATEGORIES = [
 ];
 
 const TRUST = [
-  { icon: Sparkles, title: "AI-powered analysis", copy: "Real signals from your live site, interpreted in plain English." },
+  { icon: Sparkles, title: "Powered by GPT-5.6-Sol", copy: "Real signals from your live site, interpreted in plain English by OpenAI's GPT-5.6-Sol." },
   { icon: Target, title: "Actionable recommendations", copy: "Every finding comes with a specific next step, not a vague warning." },
   { icon: Gauge, title: "Business-focused insights", copy: "We explain what each issue costs you, not just what it is." },
   { icon: Timer, title: "Fast report generation", copy: "A full eight-category report in well under a minute." },
@@ -67,7 +67,7 @@ const TRUST = [
 const FAQS = [
   {
     q: "How does the audit work?",
-    a: "You give us a public web address. We fetch the page exactly as a visitor's browser would, measure dozens of technical and content signals, then use AI to turn those measurements into a prioritised, plain-language report across eight categories.",
+    a: "You give us a public web address. We fetch the page exactly as a visitor's browser would, measure dozens of technical and content signals, then use OpenAI's GPT-5.6-Sol model to turn those measurements into a prioritised, plain-language report across eight categories.",
   },
   {
     q: "How long does an audit take?",
@@ -98,7 +98,7 @@ function Index() {
             <div className="mx-auto max-w-3xl text-center">
               <span className="inline-flex animate-rise items-center gap-2 rounded-full border border-border bg-surface/70 px-3.5 py-1.5 text-xs font-medium text-muted-foreground">
                 <Sparkles className="size-3.5 text-primary" aria-hidden />
-                AI-powered website audits
+                Website audits powered by GPT-5.6-Sol
               </span>
               <h1 className="mt-6 animate-rise text-4xl font-bold leading-[1.08] sm:text-6xl">
                 Know Exactly What's{" "}

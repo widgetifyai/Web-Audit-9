@@ -115,7 +115,7 @@ export function ReportView({ report }: { report: AuditReport }) {
             {report.aiPowered ? (
               <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                 <Sparkles className="size-3" aria-hidden />
-                AI-generated analysis
+                Analysis by GPT-5.6-Sol
               </span>
             ) : null}
             <h1 className="mt-3 truncate text-3xl font-bold sm:text-4xl">{hostname}</h1>

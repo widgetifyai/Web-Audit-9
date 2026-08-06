@@ -36,8 +36,8 @@ function AboutPage() {
           <p>
             We fetch your page exactly as a visitor's browser would, measure dozens of real signals
             across performance, SEO, accessibility, mobile experience, user experience, conversion,
-            security and technical hygiene, and use AI to translate those measurements into a
-            prioritised action list written for decision-makers.
+            security and technical hygiene, then use OpenAI's GPT-5.6-Sol model to translate those
+            measurements into a prioritised action list written for decision-makers.
           </p>
           <p>
             The result is a report you can hand to a developer, an agency or a marketing lead and
