@@ -79,7 +79,9 @@ function HistoryPage() {
           Every report you've run, stored privately in this browser.
         </p>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+        <AchievementsWidget className="mt-6" />
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
           <div className="relative">
             <Search
               className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
