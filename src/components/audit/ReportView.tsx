@@ -41,8 +41,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   addToDirectory,
   encodeReport,
-  getPreviousAudit,
+  getScoreTrend,
   isInDirectory,
+  listAudits,
   listFavorites,
   toggleFavorite,
 } from "@/lib/audit-history";
