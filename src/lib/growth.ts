@@ -131,3 +131,26 @@ export function resetAchievements(): void {
 export function getAchievement(id: AchievementId): Achievement | undefined {
   return ACHIEVEMENTS.find((a) => a.id === id);
 }
+
+export function evaluateAuditAchievements(report: AuditReport): AchievementId[] {
+  const { listAudits } = await import("./audit-history");
+  const audits = listAudits();
+  const total = audits.length + 1;
+  const unlocked: AchievementId[] = [];
+
+  if (total >= 1) unlocked.push("first-audit");
+  if (total >= 5) unlocked.push("score-hunter");
+  if (total >= 10) unlocked.push("regular");
+  if (report.overallScore >= 90) unlocked.push("high-performer");
+
+  return unlocked;
+}
+
+export function unlockAndNotify(id: AchievementId): UnlockedAchievement[] {
+  const next = unlock(id);
+  window.dispatchEvent(new CustomEvent("webaudit:achievement-unlocked", { detail: id }));
+  return next;
+}
+
+import type { AuditReport } from "./audit-types";
+
