@@ -98,7 +98,7 @@ export function SiteFooter() {
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center">
           <div className="space-y-1">
             <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} WebAudit. All rights reserved.
+              © {year} WebAudit. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground">
               The platform created by{" "}
