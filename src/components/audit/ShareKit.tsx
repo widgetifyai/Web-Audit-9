@@ -216,15 +216,3 @@ export function ShareKit({ report, onClose }: ShareKitProps) {
   );
 }
 
-export function ShareKitButton({ report }: { report: AuditReport }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <>
-      <Button variant="hero" size="sm" onClick={() => setOpen(true)}>
-        <Share2 className="mr-1.5 size-4" aria-hidden />
-        Share
-      </Button>
-      {open ? <ShareKit report={report} onClose={() => setOpen(false)} /> : null}
-    </>
-  );
-}
