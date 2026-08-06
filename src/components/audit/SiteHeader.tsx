@@ -15,6 +15,12 @@ export function SiteHeader() {
         </Link>
         <nav className="flex items-center gap-1 sm:gap-2">
           <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+            <Link to="/directory">Directory</Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+            <Link to="/achievements">Achievements</Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
             <Link to="/report/$id" params={{ id: "sample" }}>
               Sample report
             </Link>
@@ -22,7 +28,7 @@ export function SiteHeader() {
           <Button asChild variant="ghost" size="sm">
             <Link to="/history">History</Link>
           </Button>
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+          <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
             <Link to="/community">Community</Link>
           </Button>
           <Button asChild variant="hero" size="sm">
