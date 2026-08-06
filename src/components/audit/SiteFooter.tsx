@@ -1,9 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { Gauge } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { CommunityLinks } from "@/components/audit/CommunityLinks";
 
 export function SiteFooter() {
+  const [year, setYear] = useState(2026);
+  useEffect(() => setYear(new Date().getFullYear()), []);
   return (
     <footer className="no-print border-t border-border/60 bg-surface/40">
       <div className="mx-auto max-w-6xl px-5 py-14">
