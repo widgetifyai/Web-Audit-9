@@ -11,12 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as CommunityRouteImport } from './routes/community'
+import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
+import { Route as ApiPublicBadgeIdRouteImport } from './routes/api/public/badge.$id'
+import { Route as ApiPublicShareImageIdRouteImport } from './routes/api/public/share-image.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,9 +32,19 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommunityRoute = CommunityRouteImport.update({
   id: '/community',
   path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DirectoryRoute = DirectoryRouteImport.update({
+  id: '/directory',
+  path: '/directory',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HistoryRoute = HistoryRouteImport.update({
@@ -58,80 +72,118 @@ const ReportIdRoute = ReportIdRouteImport.update({
   path: '/report/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicBadgeIdRoute = ApiPublicBadgeIdRouteImport.update({
+  id: '/api/public/badge/$id',
+  path: '/api/public/badge/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicShareImageIdRoute = ApiPublicShareImageIdRouteImport.update({
+  id: '/api/public/share-image/$id',
+  path: '/api/public/share-image/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
   '/community': typeof CommunityRoute
+  '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
+  '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
+  '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
   '/community': typeof CommunityRoute
+  '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
+  '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
+  '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
   '/community': typeof CommunityRoute
+  '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
+  '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
+  '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/achievements'
     | '/community'
+    | '/directory'
     | '/history'
     | '/privacy'
     | '/support'
     | '/terms'
     | '/report/$id'
+    | '/api/public/badge/$id'
+    | '/api/public/share-image/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/achievements'
     | '/community'
+    | '/directory'
     | '/history'
     | '/privacy'
     | '/support'
     | '/terms'
     | '/report/$id'
+    | '/api/public/badge/$id'
+    | '/api/public/share-image/$id'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/achievements'
     | '/community'
+    | '/directory'
     | '/history'
     | '/privacy'
     | '/support'
     | '/terms'
     | '/report/$id'
+    | '/api/public/badge/$id'
+    | '/api/public/share-image/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AchievementsRoute: typeof AchievementsRoute
   CommunityRoute: typeof CommunityRoute
+  DirectoryRoute: typeof DirectoryRoute
   HistoryRoute: typeof HistoryRoute
   PrivacyRoute: typeof PrivacyRoute
   SupportRoute: typeof SupportRoute
   TermsRoute: typeof TermsRoute
   ReportIdRoute: typeof ReportIdRoute
+  ApiPublicBadgeIdRoute: typeof ApiPublicBadgeIdRoute
+  ApiPublicShareImageIdRoute: typeof ApiPublicShareImageIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -150,11 +202,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/community': {
       id: '/community'
       path: '/community'
       fullPath: '/community'
       preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/directory': {
+      id: '/directory'
+      path: '/directory'
+      fullPath: '/directory'
+      preLoaderRoute: typeof DirectoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/history': {
@@ -192,29 +258,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/badge/$id': {
+      id: '/api/public/badge/$id'
+      path: '/api/public/badge/$id'
+      fullPath: '/api/public/badge/$id'
+      preLoaderRoute: typeof ApiPublicBadgeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/share-image/$id': {
+      id: '/api/public/share-image/$id'
+      path: '/api/public/share-image/$id'
+      fullPath: '/api/public/share-image/$id'
+      preLoaderRoute: typeof ApiPublicShareImageIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AchievementsRoute: AchievementsRoute,
   CommunityRoute: CommunityRoute,
+  DirectoryRoute: DirectoryRoute,
   HistoryRoute: HistoryRoute,
   PrivacyRoute: PrivacyRoute,
   SupportRoute: SupportRoute,
   TermsRoute: TermsRoute,
   ReportIdRoute: ReportIdRoute,
+  ApiPublicBadgeIdRoute: ApiPublicBadgeIdRoute,
+  ApiPublicShareImageIdRoute: ApiPublicShareImageIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

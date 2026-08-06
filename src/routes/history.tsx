@@ -2,6 +2,8 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { History, Search, Star, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
+import { AchievementsWidget } from "@/components/audit/AchievementsWidget";
+import { ReAuditPrompt } from "@/components/audit/ReAuditPrompt";
 import { ScoreBar } from "@/components/audit/ScoreRing";
 import { SiteFooter } from "@/components/audit/SiteFooter";
 import { SiteHeader } from "@/components/audit/SiteHeader";
@@ -77,7 +79,9 @@ function HistoryPage() {
           Every report you've run, stored privately in this browser.
         </p>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+        <AchievementsWidget className="mt-6" />
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
           <div className="relative">
             <Search
               className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
@@ -202,6 +206,9 @@ function HistoryPage() {
                   </p>
                   <div className="mt-3 max-w-sm">
                     <ScoreBar score={audit.overallScore} />
+                  </div>
+                  <div className="mt-3">
+                    <ReAuditPrompt hostname={new URL(audit.url).hostname} url={audit.url} />
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5">

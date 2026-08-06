@@ -1,9 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { Gauge } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { CommunityLinks } from "@/components/audit/CommunityLinks";
 
 export function SiteFooter() {
+  const [year, setYear] = useState(2026);
+  useEffect(() => setYear(new Date().getFullYear()), []);
   return (
     <footer className="no-print border-t border-border/60 bg-surface/40">
       <div className="mx-auto max-w-6xl px-5 py-14">
@@ -95,7 +98,7 @@ export function SiteFooter() {
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center">
           <div className="space-y-1">
             <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} WebAudit. All rights reserved.
+              © {year} WebAudit. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground">
               The platform created by{" "}

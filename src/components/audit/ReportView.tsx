@@ -1,9 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import {
   ArrowLeft,
+  Bookmark,
   Check,
   Copy,
   Download,
+  Eye,
   Printer,
   Share2,
   Sparkles,
@@ -11,21 +13,42 @@ import {
   TrendingDown,
   TrendingUp,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
 import { DifficultyBadge, PriorityBadge } from "@/components/audit/PriorityBadge";
+import { ReAuditPrompt } from "@/components/audit/ReAuditPrompt";
 import { ScoreBar, ScoreRing } from "@/components/audit/ScoreRing";
+import { ShareKit } from "@/components/audit/ShareKit";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { encodeReport, listFavorites, toggleFavorite } from "@/lib/audit-history";
+import {
+  addToDirectory,
+  encodeReport,
+  getScoreTrend,
+  isInDirectory,
+  listAudits,
+  listFavorites,
+  toggleFavorite,
+} from "@/lib/audit-history";
 import { PRIORITY_ORDER, scoreLabel, scoreTone, type AuditReport } from "@/lib/audit-types";
+import { evaluateAuditAchievements, unlockAndNotify } from "@/lib/growth";
 import { cn } from "@/lib/utils";
 
 const TONE_TEXT = {
@@ -36,6 +59,9 @@ const TONE_TEXT = {
 
 export function ReportView({ report }: { report: AuditReport }) {
   const [favorites, setFavorites] = useState<string[]>(() => listFavorites());
+  const [shareOpen, setShareOpen] = useState(false);
+  const [inDirectory, setInDirectory] = useState(() => isInDirectory(report.id));
+  const [badgeCopied, setBadgeCopied] = useState(false);
   const isFavorite = favorites.includes(report.id);
   const hostname = (() => {
     try {
@@ -44,6 +70,19 @@ export function ReportView({ report }: { report: AuditReport }) {
       return report.url;
     }
   })();
+
+  const trend = useMemo(() => getScoreTrend(hostname), [hostname]);
+  const badgeSnippet = useMemo(
+    () =>
+      `<a href="${typeof window !== "undefined" ? window.location.origin : ""}/report/${report.id}?d=${encodeReport(report)}" target="_blank" rel="noopener"><img src="${typeof window !== "undefined" ? window.location.origin : ""}/api/public/badge/${report.id}?d=${encodeReport(report)}" alt="WebAudit score: ${report.overallScore}/100" /></a>`,
+    [report],
+  );
+
+  useEffect(() => {
+    const auditCount = listAudits().length;
+    const newIds = evaluateAuditAchievements(report, auditCount);
+    newIds.forEach((id) => unlockAndNotify(id));
+  }, [report]);
 
   const sortedRecommendations = [...report.recommendations].sort(
     (a, b) => (PRIORITY_ORDER[a.priority] ?? 3) - (PRIORITY_ORDER[b.priority] ?? 3),
@@ -60,12 +99,28 @@ export function ReportView({ report }: { report: AuditReport }) {
     toast.success("Recommendations copied to your clipboard");
   };
 
-  const share = async () => {
-    const link = `${window.location.origin}/report/${report.id}?d=${encodeReport(report)}`;
-    await navigator.clipboard.writeText(link);
-    toast.success("Public link copied", {
-      description: "Anyone with this link can view the report.",
-    });
+  const toggleDirectory = () => {
+    if (inDirectory) {
+      import("@/lib/audit-history").then(({ removeFromDirectory }) => {
+        removeFromDirectory(report.id);
+        setInDirectory(false);
+        toast.success("Removed from public directory");
+      });
+    } else {
+      addToDirectory(report);
+      setInDirectory(true);
+      unlockAndNotify("directory-contributor");
+      toast.success("Added to public directory", {
+        description: "Your audit is now discoverable by the community.",
+      });
+    }
+  };
+
+  const copyBadge = async () => {
+    await navigator.clipboard.writeText(badgeSnippet);
+    setBadgeCopied(true);
+    toast.success("Badge embed code copied");
+    setTimeout(() => setBadgeCopied(false), 2000);
   };
 
   return (
@@ -91,10 +146,20 @@ export function ReportView({ report }: { report: AuditReport }) {
             <Copy className="size-4" aria-hidden />
             Copy
           </Button>
-          <Button variant="soft" size="sm" onClick={share}>
-            <Share2 className="size-4" aria-hidden />
-            Share
-          </Button>
+          <Dialog open={shareOpen} onOpenChange={setShareOpen}>
+            <DialogTrigger asChild>
+              <Button variant="soft" size="sm">
+                <Share2 className="size-4" aria-hidden />
+                Share
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-lg">
+              <DialogHeader>
+                <DialogTitle>Share this audit</DialogTitle>
+              </DialogHeader>
+              <ShareKit report={report} onClose={() => setShareOpen(false)} />
+            </DialogContent>
+          </Dialog>
           <Button variant="soft" size="sm" onClick={() => window.print()}>
             <Printer className="size-4" aria-hidden />
             Print
@@ -195,6 +260,49 @@ export function ReportView({ report }: { report: AuditReport }) {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="surface-card mt-6 p-6 no-print">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div className="flex-1">
+            <h2 className="flex items-center gap-2 text-lg font-bold">
+              <Eye className="size-5 text-primary" aria-hidden />
+              Grow this audit
+            </h2>
+            <p className="mt-2 max-w-xl text-sm text-muted-foreground">
+              Add this report to the public directory, embed a score badge, or share it with your community to drive discovery.
+            </p>
+            <ReAuditPrompt hostname={hostname} url={report.url} />
+          </div>
+          <div className="flex min-w-[18rem] flex-col gap-4">
+            <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface-2 p-4">
+              <div className="flex items-center gap-3">
+                <Bookmark className={cn("size-5", inDirectory ? "fill-primary text-primary" : "text-muted-foreground")} aria-hidden />
+                <div>
+                  <Label htmlFor="directory-toggle" className="text-sm font-semibold">
+                    Public directory
+                  </Label>
+                  <p className="text-xs text-muted-foreground">{inDirectory ? "Listed" : "Not listed"}</p>
+                </div>
+              </div>
+              <Switch
+                id="directory-toggle"
+                checked={inDirectory}
+                onCheckedChange={toggleDirectory}
+                aria-label="Add to public directory"
+              />
+            </div>
+            <div className="rounded-xl border border-border bg-surface-2 p-4">
+              <Label className="text-sm font-semibold">Score badge</Label>
+              <div className="mt-2 flex items-center gap-2">
+                <Input readOnly value={badgeSnippet} className="h-9 text-[10px]" />
+                <Button size="icon" variant="soft" onClick={copyBadge} aria-label="Copy badge code">
+                  {badgeCopied ? <Check className="size-4 text-success" /> : <Copy className="size-4" />}
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
