@@ -59,6 +59,9 @@ const TONE_TEXT = {
 
 export function ReportView({ report }: { report: AuditReport }) {
   const [favorites, setFavorites] = useState<string[]>(() => listFavorites());
+  const [shareOpen, setShareOpen] = useState(false);
+  const [inDirectory, setInDirectory] = useState(() => isInDirectory(report.id));
+  const [badgeCopied, setBadgeCopied] = useState(false);
   const isFavorite = favorites.includes(report.id);
   const hostname = (() => {
     try {
@@ -67,6 +70,19 @@ export function ReportView({ report }: { report: AuditReport }) {
       return report.url;
     }
   })();
+
+  const trend = useMemo(() => getScoreTrend(hostname), [hostname]);
+  const badgeSnippet = useMemo(
+    () =>
+      `<a href="${typeof window !== "undefined" ? window.location.origin : ""}/report/${report.id}?d=${encodeReport(report)}" target="_blank" rel="noopener"><img src="${typeof window !== "undefined" ? window.location.origin : ""}/api/public/badge/${report.id}?d=${encodeReport(report)}" alt="WebAudit score: ${report.overallScore}/100" /></a>`,
+    [report],
+  );
+
+  useEffect(() => {
+    const auditCount = listAudits().length;
+    const newIds = evaluateAuditAchievements(report, auditCount);
+    newIds.forEach((id) => unlockAndNotify(id));
+  }, [report]);
 
   const sortedRecommendations = [...report.recommendations].sort(
     (a, b) => (PRIORITY_ORDER[a.priority] ?? 3) - (PRIORITY_ORDER[b.priority] ?? 3),
@@ -83,12 +99,28 @@ export function ReportView({ report }: { report: AuditReport }) {
     toast.success("Recommendations copied to your clipboard");
   };
 
-  const share = async () => {
-    const link = `${window.location.origin}/report/${report.id}?d=${encodeReport(report)}`;
-    await navigator.clipboard.writeText(link);
-    toast.success("Public link copied", {
-      description: "Anyone with this link can view the report.",
-    });
+  const toggleDirectory = () => {
+    if (inDirectory) {
+      import("@/lib/audit-history").then(({ removeFromDirectory }) => {
+        removeFromDirectory(report.id);
+        setInDirectory(false);
+        toast.success("Removed from public directory");
+      });
+    } else {
+      addToDirectory(report);
+      setInDirectory(true);
+      unlockAndNotify("directory-contributor");
+      toast.success("Added to public directory", {
+        description: "Your audit is now discoverable by the community.",
+      });
+    }
+  };
+
+  const copyBadge = async () => {
+    await navigator.clipboard.writeText(badgeSnippet);
+    setBadgeCopied(true);
+    toast.success("Badge embed code copied");
+    setTimeout(() => setBadgeCopied(false), 2000);
   };
 
   return (
