@@ -57,9 +57,9 @@ function PrivacyPage() {
           <section>
             <h2 className="text-xl font-semibold text-foreground">AI processing</h2>
             <p className="mt-2">
-              The measurements taken from your page are sent to an AI model so it can write the
-              recommendations. Only the technical signals and page metadata are sent — never
-              personal data you have not provided.
+              The measurements taken from your page are sent to OpenAI's GPT-5.6-Sol model so it
+              can write the recommendations. Only the technical signals and page metadata are
+              sent — never personal data you have not provided.
             </p>
           </section>
           <section>

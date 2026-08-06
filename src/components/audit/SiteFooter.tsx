@@ -16,7 +16,7 @@ export function SiteFooter() {
               <span className="font-display text-lg font-bold">WebAudit</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              AI-powered website audits that turn technical detail into decisions your business can
+              GPT-5.6-Sol powered website audits that turn technical detail into decisions your business can
               act on.
             </p>
           </div>
