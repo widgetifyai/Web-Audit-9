@@ -11,6 +11,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import type { AuditReport } from "./audit-types";
+
 export type AchievementId =
   | "first-audit"
   | "community-champion"
@@ -132,10 +134,11 @@ export function getAchievement(id: AchievementId): Achievement | undefined {
   return ACHIEVEMENTS.find((a) => a.id === id);
 }
 
-export function evaluateAuditAchievements(report: AuditReport): AchievementId[] {
-  const { listAudits } = await import("./audit-history");
-  const audits = listAudits();
-  const total = audits.length + 1;
+export function evaluateAuditAchievements(
+  report: AuditReport,
+  auditCount: number,
+): AchievementId[] {
+  const total = auditCount;
   const unlocked: AchievementId[] = [];
 
   if (total >= 1) unlocked.push("first-audit");
@@ -151,6 +154,3 @@ export function unlockAndNotify(id: AchievementId): UnlockedAchievement[] {
   window.dispatchEvent(new CustomEvent("webaudit:achievement-unlocked", { detail: id }));
   return next;
 }
-
-import type { AuditReport } from "./audit-types";
-
