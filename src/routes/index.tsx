@@ -16,6 +16,8 @@ import {
 
 import { AuditForm } from "@/components/audit/AuditForm";
 import { BrowserMockup } from "@/components/audit/BrowserMockup";
+import { CommunityShowcase } from "@/components/audit/CommunityShowcase";
+import { ProWaitlist } from "@/components/audit/ProWaitlist";
 import { SiteFooter } from "@/components/audit/SiteFooter";
 import { SiteHeader } from "@/components/audit/SiteHeader";
 import { Button } from "@/components/ui/button";
