@@ -2,6 +2,8 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { History, Search, Star, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
+import { AchievementsWidget } from "@/components/audit/AchievementsWidget";
+import { ReAuditPrompt } from "@/components/audit/ReAuditPrompt";
 import { ScoreBar } from "@/components/audit/ScoreRing";
 import { SiteFooter } from "@/components/audit/SiteFooter";
 import { SiteHeader } from "@/components/audit/SiteHeader";
