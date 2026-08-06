@@ -176,6 +176,25 @@ function Index() {
           </div>
         </section>
 
+        <CommunityShowcase />
+
+        <section className="border-t border-border/60 bg-surface/30 py-20">
+          <div className="mx-auto max-w-6xl px-5">
+            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+              <div>
+                <h2 className="max-w-2xl text-3xl font-bold sm:text-4xl">Grow as you audit</h2>
+                <p className="mt-3 max-w-2xl text-muted-foreground">
+                  Complete audits, share reports, and join the community to unlock achievements and
+                  track your progress.
+                </p>
+              </div>
+              <Button asChild variant="hero">
+                <Link to="/achievements">View achievements</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
         <section className="border-t border-border/60 py-20">
           <div className="mx-auto grid max-w-6xl gap-10 px-5 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
             <div>
