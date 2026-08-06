@@ -207,6 +207,9 @@ function HistoryPage() {
                   <div className="mt-3 max-w-sm">
                     <ScoreBar score={audit.overallScore} />
                   </div>
+                  <div className="mt-3">
+                    <ReAuditPrompt hostname={new URL(audit.url).hostname} url={audit.url} />
+                  </div>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <label className="mr-2 flex items-center gap-2 text-xs text-muted-foreground">
