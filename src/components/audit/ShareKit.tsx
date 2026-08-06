@@ -6,7 +6,6 @@ import {
   Linkedin,
   Loader2,
   MessageCircle,
-  Share2,
   Twitter,
 } from "lucide-react";
 import { useState } from "react";
