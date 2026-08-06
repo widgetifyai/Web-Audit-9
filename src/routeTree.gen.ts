@@ -18,6 +18,7 @@ import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
 import { Route as ApiPublicBadgeIdRouteImport } from './routes/api/public/badge.$id'
+import { Route as ApiPublicShareImageIdRouteImport } from './routes/api/public/share-image.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +65,11 @@ const ApiPublicBadgeIdRoute = ApiPublicBadgeIdRouteImport.update({
   path: '/api/public/badge/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicShareImageIdRoute = ApiPublicShareImageIdRouteImport.update({
+  id: '/api/public/share-image/$id',
+  path: '/api/public/share-image/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
+  '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
+  '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
+  '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/report/$id'
     | '/api/public/badge/$id'
+    | '/api/public/share-image/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/report/$id'
     | '/api/public/badge/$id'
+    | '/api/public/share-image/$id'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/report/$id'
     | '/api/public/badge/$id'
+    | '/api/public/share-image/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +157,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   ReportIdRoute: typeof ReportIdRoute
   ApiPublicBadgeIdRoute: typeof ApiPublicBadgeIdRoute
+  ApiPublicShareImageIdRoute: typeof ApiPublicShareImageIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicBadgeIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/share-image/$id': {
+      id: '/api/public/share-image/$id'
+      path: '/api/public/share-image/$id'
+      fullPath: '/api/public/share-image/$id'
+      preLoaderRoute: typeof ApiPublicShareImageIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   ReportIdRoute: ReportIdRoute,
   ApiPublicBadgeIdRoute: ApiPublicBadgeIdRoute,
+  ApiPublicShareImageIdRoute: ApiPublicShareImageIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
