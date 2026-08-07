@@ -18,7 +18,7 @@ export async function persistAudit(report: AuditReport): Promise<void> {
       title: report.title,
       overall_score: report.overallScore,
       categories: report.categories.map((c) => ({ id: c.id, name: c.name, score: c.score })),
-      report: report as unknown as Record<string, unknown>,
+      report: JSON.parse(JSON.stringify(report)),
       ai_powered: report.aiPowered,
     },
     { onConflict: "id" },
