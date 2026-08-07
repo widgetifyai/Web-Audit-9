@@ -1,4 +1,14 @@
-(video.mp4)
+## Demo
+
+<p align="center">
+  <a href="./video.mp4">
+    <img src="./Screenshot%202026-08-07%20185202.png" alt="Web Audit 9 Demo" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <strong>▶ Click the preview above to watch the Web Audit 9 demo</strong>
+</p>
 
 # Web Audit 9
 
