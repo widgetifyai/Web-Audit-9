@@ -10,17 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AchievementsRouteImport } from './routes/achievements'
-import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
 import { Route as ApiPublicBadgeIdRouteImport } from './routes/api/public/badge.$id'
 import { Route as ApiPublicShareImageIdRouteImport } from './routes/api/public/share-image.$id'
@@ -28,10 +25,6 @@ import { Route as ApiPublicShareImageIdRouteImport } from './routes/api/public/s
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -42,11 +35,6 @@ const AboutRoute = AboutRouteImport.update({
 const AchievementsRoute = AchievementsRouteImport.update({
   id: '/achievements',
   path: '/achievements',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityRoute = CommunityRouteImport.update({
@@ -79,11 +67,6 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const ReportIdRoute = ReportIdRouteImport.update({
   id: '/report/$id',
   path: '/report/$id',
@@ -104,14 +87,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/auth': typeof AuthRoute
   '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
-  '/admin': typeof AuthenticatedAdminRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
@@ -120,14 +101,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/auth': typeof AuthRoute
   '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
-  '/admin': typeof AuthenticatedAdminRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
@@ -135,17 +114,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/auth': typeof AuthRoute
   '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
-  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
@@ -156,14 +132,12 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
-    | '/auth'
     | '/community'
     | '/directory'
     | '/history'
     | '/privacy'
     | '/support'
     | '/terms'
-    | '/admin'
     | '/report/$id'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
@@ -172,31 +146,26 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
-    | '/auth'
     | '/community'
     | '/directory'
     | '/history'
     | '/privacy'
     | '/support'
     | '/terms'
-    | '/admin'
     | '/report/$id'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
   id:
     | '__root__'
     | '/'
-    | '/_authenticated'
     | '/about'
     | '/achievements'
-    | '/auth'
     | '/community'
     | '/directory'
     | '/history'
     | '/privacy'
     | '/support'
     | '/terms'
-    | '/_authenticated/admin'
     | '/report/$id'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
@@ -204,10 +173,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   AchievementsRoute: typeof AchievementsRoute
-  AuthRoute: typeof AuthRoute
   CommunityRoute: typeof CommunityRoute
   DirectoryRoute: typeof DirectoryRoute
   HistoryRoute: typeof HistoryRoute
@@ -228,13 +195,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -247,13 +207,6 @@ declare module '@tanstack/react-router' {
       path: '/achievements'
       fullPath: '/achievements'
       preLoaderRoute: typeof AchievementsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/community': {
@@ -298,13 +251,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin': {
-      id: '/_authenticated/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AuthenticatedAdminRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/report/$id': {
       id: '/report/$id'
       path: '/report/$id'
@@ -329,23 +275,10 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
-}
-
-const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
-}
-
-const AuthenticatedRouteRouteWithChildren =
-  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   AchievementsRoute: AchievementsRoute,
-  AuthRoute: AuthRoute,
   CommunityRoute: CommunityRoute,
   DirectoryRoute: DirectoryRoute,
   HistoryRoute: HistoryRoute,
