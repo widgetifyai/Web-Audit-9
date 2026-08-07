@@ -25,14 +25,19 @@ export const runAudit = createServerFn({ method: "POST" })
     try {
       const signals = await collectSignals(parsed.toString());
       const apiKey = process.env["LOVABLE_API_KEY"];
+      const { persistAudit } = await import("./audits.server");
       if (apiKey) {
         try {
-          return { report: await aiReport(signals, id, apiKey), error: null };
+          const report = await aiReport(signals, id, apiKey);
+          await persistAudit(report);
+          return { report, error: null };
         } catch (aiError) {
           console.error("AI audit failed, falling back to heuristics:", aiError);
         }
       }
-      return { report: fallbackReport(signals, id), error: null };
+      const report = fallbackReport(signals, id);
+      await persistAudit(report);
+      return { report, error: null };
     } catch (error) {
       console.error("Audit fetch failed:", error);
       return {

@@ -1,4 +1,5 @@
 import { Link, createFileRoute, useParams, useSearch } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { FileSearch } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -9,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { decodeReport, getAudit } from "@/lib/audit-history";
 import type { AuditReport } from "@/lib/audit-types";
+import { getStoredReport } from "@/lib/audits.functions";
 import { SAMPLE_REPORT } from "@/lib/sample-report";
 
 const TITLE = "Website Audit Report — WebAudit";
@@ -50,17 +52,31 @@ function ReportPage() {
   const { d } = useSearch({ from: "/report/$id" });
   const [report, setReport] = useState<AuditReport | null>(null);
   const [loading, setLoading] = useState(true);
+  const fetchStored = useServerFn(getStoredReport);
 
   useEffect(() => {
-    if (id === "sample") {
-      setReport(SAMPLE_REPORT);
-    } else if (d) {
-      setReport(decodeReport(d) ?? getAudit(id));
-    } else {
-      setReport(getAudit(id));
-    }
-    setLoading(false);
-  }, [id, d]);
+    let cancelled = false;
+    const resolve = async () => {
+      setLoading(true);
+      if (id === "sample") {
+        if (!cancelled) setReport(SAMPLE_REPORT);
+      } else {
+        const local = (d ? decodeReport(d) : null) ?? getAudit(id);
+        if (local) {
+          if (!cancelled) setReport(local);
+        } else {
+          // Fall back to the permanent audit database so shared links work anywhere.
+          const stored = await fetchStored({ data: { id } }).catch(() => null);
+          if (!cancelled) setReport(stored);
+        }
+      }
+      if (!cancelled) setLoading(false);
+    };
+    void resolve();
+    return () => {
+      cancelled = true;
+    };
+  }, [id, d, fetchStored]);
 
   return (
     <div className="min-h-dvh">
@@ -77,8 +93,8 @@ function ReportPage() {
             </span>
             <h1 className="mt-6 text-2xl font-bold">Report not found</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              This report isn't saved in this browser. Reports are stored locally, so a link
-              without share data won't open on another device.
+              We couldn't find this report in your browser or in the audit database. It may have
+              been removed by a moderator.
             </p>
             <div className="mt-6 flex justify-center gap-3">
               <Button asChild variant="hero">

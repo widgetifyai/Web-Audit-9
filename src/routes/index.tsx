@@ -17,6 +17,7 @@ import {
 import { AuditForm } from "@/components/audit/AuditForm";
 import { BrowserMockup } from "@/components/audit/BrowserMockup";
 import { CommunityShowcase } from "@/components/audit/CommunityShowcase";
+import { HelpVideo } from "@/components/audit/HelpVideo";
 import { ProWaitlist } from "@/components/audit/ProWaitlist";
 import { SiteFooter } from "@/components/audit/SiteFooter";
 import { SiteHeader } from "@/components/audit/SiteHeader";
@@ -116,6 +117,7 @@ function Index() {
             <div className="mx-auto mt-10 max-w-2xl animate-rise">
               <AuditForm />
               <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+                <HelpVideo />
                 <Button asChild variant="soft" size="sm">
                   <Link to="/report/$id" params={{ id: "sample" }}>
                     View Sample Report
