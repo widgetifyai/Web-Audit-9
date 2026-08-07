@@ -22,7 +22,6 @@ import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
-import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
 import { Route as ApiPublicBadgeIdRouteImport } from './routes/api/public/badge.$id'
 import { Route as ApiPublicShareImageIdRouteImport } from './routes/api/public/share-image.$id'
 
@@ -90,11 +89,6 @@ const ReportIdRoute = ReportIdRouteImport.update({
   path: '/report/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicBootstrapAdminRoute = ApiPublicBootstrapAdminRouteImport.update({
-  id: '/api/public/bootstrap-admin',
-  path: '/api/public/bootstrap-admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiPublicBadgeIdRoute = ApiPublicBadgeIdRouteImport.update({
   id: '/api/public/badge/$id',
   path: '/api/public/badge/$id',
@@ -119,7 +113,6 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/report/$id': typeof ReportIdRoute
-  '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
 }
@@ -136,7 +129,6 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/report/$id': typeof ReportIdRoute
-  '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
 }
@@ -155,7 +147,6 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/report/$id': typeof ReportIdRoute
-  '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
 }
@@ -174,7 +165,6 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin'
     | '/report/$id'
-    | '/api/public/bootstrap-admin'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -191,7 +181,6 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin'
     | '/report/$id'
-    | '/api/public/bootstrap-admin'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
   id:
@@ -209,7 +198,6 @@ export interface FileRouteTypes {
     | '/terms'
     | '/_authenticated/admin'
     | '/report/$id'
-    | '/api/public/bootstrap-admin'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
   fileRoutesById: FileRoutesById
@@ -227,7 +215,6 @@ export interface RootRouteChildren {
   SupportRoute: typeof SupportRoute
   TermsRoute: typeof TermsRoute
   ReportIdRoute: typeof ReportIdRoute
-  ApiPublicBootstrapAdminRoute: typeof ApiPublicBootstrapAdminRoute
   ApiPublicBadgeIdRoute: typeof ApiPublicBadgeIdRoute
   ApiPublicShareImageIdRoute: typeof ApiPublicShareImageIdRoute
 }
@@ -325,13 +312,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/bootstrap-admin': {
-      id: '/api/public/bootstrap-admin'
-      path: '/api/public/bootstrap-admin'
-      fullPath: '/api/public/bootstrap-admin'
-      preLoaderRoute: typeof ApiPublicBootstrapAdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/public/badge/$id': {
       id: '/api/public/badge/$id'
       path: '/api/public/badge/$id'
@@ -373,7 +353,6 @@ const rootRouteChildren: RootRouteChildren = {
   SupportRoute: SupportRoute,
   TermsRoute: TermsRoute,
   ReportIdRoute: ReportIdRoute,
-  ApiPublicBootstrapAdminRoute: ApiPublicBootstrapAdminRoute,
   ApiPublicBadgeIdRoute: ApiPublicBadgeIdRoute,
   ApiPublicShareImageIdRoute: ApiPublicShareImageIdRoute,
 }
