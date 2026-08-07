@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LifeBuoy, Mail, MessageSquare } from "lucide-react";
 
 import { SiteFooter } from "@/components/audit/SiteFooter";
+import { HelpVideo } from "@/components/audit/HelpVideo";
 import { SiteHeader } from "@/components/audit/SiteHeader";
 
 const TITLE = "Contact & Support — WebAudit";
@@ -45,6 +46,15 @@ function SupportPage() {
             </div>
           ))}
         </div>
+        <section className="surface-card mt-10 flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="text-base font-semibold">New here? Watch the walkthrough</h2>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+              A 23-second tour of running an audit, reading the report and sharing your score.
+            </p>
+          </div>
+          <HelpVideo label="Play tutorial" variant="hero" />
+        </section>
       </main>
       <SiteFooter />
     </div>
