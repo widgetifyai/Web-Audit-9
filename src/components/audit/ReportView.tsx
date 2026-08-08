@@ -125,14 +125,14 @@ export function ReportView({ report }: { report: AuditReport }) {
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-10">
-      <div className="no-print mb-6 flex items-center justify-between gap-4">
-        <Button asChild variant="ghost" size="sm">
+      <div className="no-print mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <Button asChild variant="ghost" size="sm" className="self-start">
           <Link to="/">
             <ArrowLeft className="size-4" aria-hidden />
             New audit
           </Link>
         </Button>
-        <div className="flex flex-wrap items-center justify-end gap-2">
+        <div className="flex flex-wrap items-center gap-2 sm:justify-end">
           <Button
             variant="soft"
             size="sm"
