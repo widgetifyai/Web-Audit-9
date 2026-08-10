@@ -1,12 +1,13 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, Globe, Loader2, Lock } from "lucide-react";
+import { ArrowRight, Globe, Loader2, Lock, Mail } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { saveAudit } from "@/lib/audit-history";
+import { encodeReport, saveAudit } from "@/lib/audit-history";
+import { emailAuditReport } from "@/lib/audit-email.functions";
 import { normalizeUrl } from "@/lib/audit-types";
 import { runAudit } from "@/lib/audit.functions";
 import { useCommunityProgress } from "@/lib/community";
@@ -27,9 +28,11 @@ const STAGES = [
 export function AuditForm({ className }: { className?: string }) {
   const navigate = useNavigate();
   const audit = useServerFn(runAudit);
+  const sendReportEmail = useServerFn(emailAuditReport);
   const { unlocked, hydrated, count, total } = useCommunityProgress();
   const [showGate, setShowGate] = useState(false);
   const [url, setUrl] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [running, setRunning] = useState(false);
   const [stage, setStage] = useState(0);
@@ -72,10 +75,43 @@ export function AuditForm({ className }: { className?: string }) {
 
       setStage(STAGES.length - 1);
       saveAudit(result.report);
+      const report = result.report;
       toast.success("Audit complete", {
-        description: `${new URL(result.report.url).hostname} scored ${result.report.overallScore}/100`,
+        description: `${new URL(report.url).hostname} scored ${report.overallScore}/100`,
       });
-      navigate({ to: "/report/$id", params: { id: result.report.id } });
+
+      const recipient = email.trim();
+      if (recipient.includes("@")) {
+        const reportUrl = `${window.location.origin}/report/${report.id}?d=${encodeReport(report)}`;
+        void sendReportEmail({
+          data: {
+            email: recipient,
+            reportUrl,
+            report: {
+              id: report.id,
+              url: report.url,
+              title: report.title,
+              createdAt: report.createdAt,
+              overallScore: report.overallScore,
+              executiveSummary: report.executiveSummary,
+              categories: report.categories.map((c) => ({ name: c.name, score: c.score })),
+              recommendations: report.recommendations.map((r) => ({
+                title: r.title,
+                problem: r.problem,
+                priority: r.priority,
+                timeToFix: r.timeToFix,
+              })),
+            },
+          },
+        })
+          .then((res) => {
+            if (res.sent) toast.success(`Report emailed to ${recipient}`);
+            else if (res.error) toast.error(res.error);
+          })
+          .catch(() => toast.error("We couldn't email the report."));
+      }
+
+      navigate({ to: "/report/$id", params: { id: report.id } });
     } catch {
       if (timer.current) clearInterval(timer.current);
       setError("We couldn't complete the audit. Please try again in a moment.");
@@ -125,6 +161,26 @@ export function AuditForm({ className }: { className?: string }) {
               </>
             )}
           </Button>
+        </div>
+
+        <div className="surface-card mt-3 flex items-center gap-3 p-3">
+          <div className="flex min-w-0 flex-1 items-center gap-3 px-3">
+            <Mail className="size-5 shrink-0 text-muted-foreground" aria-hidden />
+            <label htmlFor="audit-email" className="sr-only">
+              Email address for your report
+            </label>
+            <input
+              id="audit-email"
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              value={email}
+              disabled={running}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@company.com — email me the report (optional)"
+              className="h-11 w-full min-w-0 bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground disabled:opacity-60"
+            />
+          </div>
         </div>
       </form>
 
