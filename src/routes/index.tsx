@@ -178,6 +178,33 @@ function Index() {
 
         <CommunityShowcase />
 
+        <section className="border-t border-border/60 py-20">
+          <div className="mx-auto max-w-6xl px-5">
+            <h2 className="max-w-2xl text-3xl font-bold sm:text-4xl">Go deeper</h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              See how the engine works, who it's built for, where it's heading — or get a
+              personalised plan in 60 seconds.
+            </p>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { to: "/how-it-works", title: "How it works", copy: "From URL to ranked action plan in five steps." },
+                { to: "/use-cases", title: "Use cases", copy: "Founders, agencies, stores, local businesses and teams." },
+                { to: "/roadmap", title: "Product roadmap", copy: "What's shipped, what's building, what's next." },
+                { to: "/quiz", title: "Growth quiz", copy: "Four questions, one personalised improvement plan." },
+              ].map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className="surface-card p-5 transition-transform duration-200 hover:-translate-y-1"
+                >
+                  <h3 className="text-base font-semibold">{item.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.copy}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="border-t border-border/60 bg-surface/30 py-20">
           <div className="mx-auto max-w-6xl px-5">
             <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">

@@ -15,9 +15,14 @@ import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as HistoryRouteImport } from './routes/history'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as QuizRouteImport } from './routes/quiz'
+import { Route as ReferralRouteImport } from './routes/referral'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as UseCasesRouteImport } from './routes/use-cases'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
 import { Route as ApiPublicBadgeIdRouteImport } from './routes/api/public/badge.$id'
 import { Route as ApiPublicShareImageIdRouteImport } from './routes/api/public/share-image.$id'
@@ -52,9 +57,29 @@ const HistoryRoute = HistoryRouteImport.update({
   path: '/history',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuizRoute = QuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReferralRoute = ReferralRouteImport.update({
+  id: '/referral',
+  path: '/referral',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SupportRoute = SupportRouteImport.update({
@@ -65,6 +90,11 @@ const SupportRoute = SupportRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UseCasesRoute = UseCasesRouteImport.update({
+  id: '/use-cases',
+  path: '/use-cases',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportIdRoute = ReportIdRouteImport.update({
@@ -90,9 +120,14 @@ export interface FileRoutesByFullPath {
   '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/privacy': typeof PrivacyRoute
+  '/quiz': typeof QuizRoute
+  '/referral': typeof ReferralRoute
+  '/roadmap': typeof RoadmapRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
+  '/use-cases': typeof UseCasesRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
@@ -104,9 +139,14 @@ export interface FileRoutesByTo {
   '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/privacy': typeof PrivacyRoute
+  '/quiz': typeof QuizRoute
+  '/referral': typeof ReferralRoute
+  '/roadmap': typeof RoadmapRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
+  '/use-cases': typeof UseCasesRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
@@ -119,9 +159,14 @@ export interface FileRoutesById {
   '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/privacy': typeof PrivacyRoute
+  '/quiz': typeof QuizRoute
+  '/referral': typeof ReferralRoute
+  '/roadmap': typeof RoadmapRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
+  '/use-cases': typeof UseCasesRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
@@ -135,9 +180,14 @@ export interface FileRouteTypes {
     | '/community'
     | '/directory'
     | '/history'
+    | '/how-it-works'
     | '/privacy'
+    | '/quiz'
+    | '/referral'
+    | '/roadmap'
     | '/support'
     | '/terms'
+    | '/use-cases'
     | '/report/$id'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
@@ -149,9 +199,14 @@ export interface FileRouteTypes {
     | '/community'
     | '/directory'
     | '/history'
+    | '/how-it-works'
     | '/privacy'
+    | '/quiz'
+    | '/referral'
+    | '/roadmap'
     | '/support'
     | '/terms'
+    | '/use-cases'
     | '/report/$id'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
@@ -163,9 +218,14 @@ export interface FileRouteTypes {
     | '/community'
     | '/directory'
     | '/history'
+    | '/how-it-works'
     | '/privacy'
+    | '/quiz'
+    | '/referral'
+    | '/roadmap'
     | '/support'
     | '/terms'
+    | '/use-cases'
     | '/report/$id'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
@@ -178,9 +238,14 @@ export interface RootRouteChildren {
   CommunityRoute: typeof CommunityRoute
   DirectoryRoute: typeof DirectoryRoute
   HistoryRoute: typeof HistoryRoute
+  HowItWorksRoute: typeof HowItWorksRoute
   PrivacyRoute: typeof PrivacyRoute
+  QuizRoute: typeof QuizRoute
+  ReferralRoute: typeof ReferralRoute
+  RoadmapRoute: typeof RoadmapRoute
   SupportRoute: typeof SupportRoute
   TermsRoute: typeof TermsRoute
+  UseCasesRoute: typeof UseCasesRoute
   ReportIdRoute: typeof ReportIdRoute
   ApiPublicBadgeIdRoute: typeof ApiPublicBadgeIdRoute
   ApiPublicShareImageIdRoute: typeof ApiPublicShareImageIdRoute
@@ -230,11 +295,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quiz': {
+      id: '/quiz'
+      path: '/quiz'
+      fullPath: '/quiz'
+      preLoaderRoute: typeof QuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/referral': {
+      id: '/referral'
+      path: '/referral'
+      fullPath: '/referral'
+      preLoaderRoute: typeof ReferralRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/support': {
@@ -249,6 +342,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/use-cases': {
+      id: '/use-cases'
+      path: '/use-cases'
+      fullPath: '/use-cases'
+      preLoaderRoute: typeof UseCasesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/report/$id': {
@@ -282,9 +382,14 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityRoute: CommunityRoute,
   DirectoryRoute: DirectoryRoute,
   HistoryRoute: HistoryRoute,
+  HowItWorksRoute: HowItWorksRoute,
   PrivacyRoute: PrivacyRoute,
+  QuizRoute: QuizRoute,
+  ReferralRoute: ReferralRoute,
+  RoadmapRoute: RoadmapRoute,
   SupportRoute: SupportRoute,
   TermsRoute: TermsRoute,
+  UseCasesRoute: UseCasesRoute,
   ReportIdRoute: ReportIdRoute,
   ApiPublicBadgeIdRoute: ApiPublicBadgeIdRoute,
   ApiPublicShareImageIdRoute: ApiPublicShareImageIdRoute,
@@ -292,13 +397,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

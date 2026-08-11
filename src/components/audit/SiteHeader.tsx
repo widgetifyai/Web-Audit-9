@@ -12,6 +12,11 @@ import {
 } from "@/components/ui/sheet";
 
 const NAV_LINKS = [
+  { to: "/how-it-works", label: "How it works" },
+  { to: "/use-cases", label: "Use cases" },
+  { to: "/roadmap", label: "Roadmap" },
+  { to: "/quiz", label: "Growth quiz" },
+  { to: "/referral", label: "Refer & earn" },
   { to: "/directory", label: "Directory" },
   { to: "/achievements", label: "Achievements" },
   { to: "/history", label: "History" },
@@ -32,33 +37,34 @@ export function SiteHeader() {
           <span className="truncate font-display text-lg font-bold">WebAudit</span>
         </Link>
         <nav className="flex items-center gap-1 sm:gap-2">
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-            <Link to="/directory">Directory</Link>
+          <Button asChild variant="ghost" size="sm" className="hidden lg:inline-flex">
+            <Link to="/how-it-works">How it works</Link>
           </Button>
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-            <Link to="/achievements">Achievements</Link>
+          <Button asChild variant="ghost" size="sm" className="hidden lg:inline-flex">
+            <Link to="/use-cases">Use cases</Link>
           </Button>
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-            <Link to="/report/$id" params={{ id: "sample" }}>
-              Sample report
-            </Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-            <Link to="/history">History</Link>
+          <Button asChild variant="ghost" size="sm" className="hidden lg:inline-flex">
+            <Link to="/roadmap">Roadmap</Link>
           </Button>
           <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
-            <Link to="/community">Community</Link>
+            <Link to="/quiz">Growth quiz</Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
+            <Link to="/directory">Directory</Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
+            <Link to="/referral">Refer</Link>
           </Button>
           <Button asChild variant="hero" size="sm">
             <Link to="/">Start audit</Link>
           </Button>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="sm:hidden" aria-label="Open menu">
+              <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu">
                 <Menu className="size-5" aria-hidden />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-72">
+            <SheetContent side="right" className="w-72 overflow-y-auto">
               <SheetHeader>
                 <SheetTitle className="font-display">WebAudit</SheetTitle>
               </SheetHeader>
