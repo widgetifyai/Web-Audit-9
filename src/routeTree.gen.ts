@@ -19,6 +19,7 @@ import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ReferralRouteImport } from './routes/referral'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as UseCasesRouteImport } from './routes/use-cases'
@@ -76,6 +77,11 @@ const ReferralRoute = ReferralRouteImport.update({
   path: '/referral',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -118,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/referral': typeof ReferralRoute
+  '/roadmap': typeof RoadmapRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/use-cases': typeof UseCasesRoute
@@ -136,6 +143,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/referral': typeof ReferralRoute
+  '/roadmap': typeof RoadmapRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/use-cases': typeof UseCasesRoute
@@ -155,6 +163,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/referral': typeof ReferralRoute
+  '/roadmap': typeof RoadmapRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/use-cases': typeof UseCasesRoute
@@ -175,6 +184,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quiz'
     | '/referral'
+    | '/roadmap'
     | '/support'
     | '/terms'
     | '/use-cases'
@@ -193,6 +203,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quiz'
     | '/referral'
+    | '/roadmap'
     | '/support'
     | '/terms'
     | '/use-cases'
@@ -211,6 +222,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quiz'
     | '/referral'
+    | '/roadmap'
     | '/support'
     | '/terms'
     | '/use-cases'
@@ -230,6 +242,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
   ReferralRoute: typeof ReferralRoute
+  RoadmapRoute: typeof RoadmapRoute
   SupportRoute: typeof SupportRoute
   TermsRoute: typeof TermsRoute
   UseCasesRoute: typeof UseCasesRoute
@@ -310,6 +323,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReferralRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
@@ -366,6 +386,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
   ReferralRoute: ReferralRoute,
+  RoadmapRoute: RoadmapRoute,
   SupportRoute: SupportRoute,
   TermsRoute: TermsRoute,
   UseCasesRoute: UseCasesRoute,
