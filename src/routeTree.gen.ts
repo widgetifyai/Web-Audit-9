@@ -17,6 +17,7 @@ import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuizRouteImport } from './routes/quiz'
+import { Route as ReferralRouteImport } from './routes/referral'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
@@ -63,6 +64,11 @@ const QuizRoute = QuizRouteImport.update({
   path: '/quiz',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReferralRoute = ReferralRouteImport.update({
+  id: '/referral',
+  path: '/referral',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -98,6 +104,7 @@ export interface FileRoutesByFullPath {
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
+  '/referral': typeof ReferralRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByTo {
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
+  '/referral': typeof ReferralRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
@@ -129,6 +137,7 @@ export interface FileRoutesById {
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
+  '/referral': typeof ReferralRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
@@ -146,6 +155,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/privacy'
     | '/quiz'
+    | '/referral'
     | '/support'
     | '/terms'
     | '/report/$id'
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/privacy'
     | '/quiz'
+    | '/referral'
     | '/support'
     | '/terms'
     | '/report/$id'
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/privacy'
     | '/quiz'
+    | '/referral'
     | '/support'
     | '/terms'
     | '/report/$id'
@@ -192,6 +204,7 @@ export interface RootRouteChildren {
   HistoryRoute: typeof HistoryRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
+  ReferralRoute: typeof ReferralRoute
   SupportRoute: typeof SupportRoute
   TermsRoute: typeof TermsRoute
   ReportIdRoute: typeof ReportIdRoute
@@ -257,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuizRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/referral': {
+      id: '/referral'
+      path: '/referral'
+      fullPath: '/referral'
+      preLoaderRoute: typeof ReferralRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
@@ -304,6 +324,7 @@ const rootRouteChildren: RootRouteChildren = {
   HistoryRoute: HistoryRoute,
   PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
+  ReferralRoute: ReferralRoute,
   SupportRoute: SupportRoute,
   TermsRoute: TermsRoute,
   ReportIdRoute: ReportIdRoute,
