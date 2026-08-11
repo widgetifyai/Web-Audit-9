@@ -64,7 +64,7 @@ export function GrowthQuiz({ className }: { className?: string }) {
     save({
       name: parsed.data.name,
       email: parsed.data.email,
-      website: parsed.data.website || undefined,
+      ...(parsed.data.website ? { website: parsed.data.website } : {}),
       answers: answers as Required<QuizAnswers>,
       createdAt: new Date().toISOString(),
     });
