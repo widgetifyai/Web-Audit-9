@@ -16,6 +16,7 @@ import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
@@ -57,6 +58,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuizRoute = QuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
+  '/quiz': typeof QuizRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
+  '/quiz': typeof QuizRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
+  '/quiz': typeof QuizRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/report/$id': typeof ReportIdRoute
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/directory'
     | '/history'
     | '/privacy'
+    | '/quiz'
     | '/support'
     | '/terms'
     | '/report/$id'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/directory'
     | '/history'
     | '/privacy'
+    | '/quiz'
     | '/support'
     | '/terms'
     | '/report/$id'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/directory'
     | '/history'
     | '/privacy'
+    | '/quiz'
     | '/support'
     | '/terms'
     | '/report/$id'
@@ -179,6 +191,7 @@ export interface RootRouteChildren {
   DirectoryRoute: typeof DirectoryRoute
   HistoryRoute: typeof HistoryRoute
   PrivacyRoute: typeof PrivacyRoute
+  QuizRoute: typeof QuizRoute
   SupportRoute: typeof SupportRoute
   TermsRoute: typeof TermsRoute
   ReportIdRoute: typeof ReportIdRoute
@@ -237,6 +250,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quiz': {
+      id: '/quiz'
+      path: '/quiz'
+      fullPath: '/quiz'
+      preLoaderRoute: typeof QuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
@@ -283,6 +303,7 @@ const rootRouteChildren: RootRouteChildren = {
   DirectoryRoute: DirectoryRoute,
   HistoryRoute: HistoryRoute,
   PrivacyRoute: PrivacyRoute,
+  QuizRoute: QuizRoute,
   SupportRoute: SupportRoute,
   TermsRoute: TermsRoute,
   ReportIdRoute: ReportIdRoute,
@@ -292,13 +313,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
