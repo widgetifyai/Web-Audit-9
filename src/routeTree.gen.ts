@@ -15,6 +15,7 @@ import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as HistoryRouteImport } from './routes/history'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ReferralRouteImport } from './routes/referral'
@@ -52,6 +53,11 @@ const DirectoryRoute = DirectoryRouteImport.update({
 const HistoryRoute = HistoryRouteImport.update({
   id: '/history',
   path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/referral': typeof ReferralRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/referral': typeof ReferralRoute
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/referral': typeof ReferralRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/directory'
     | '/history'
+    | '/how-it-works'
     | '/privacy'
     | '/quiz'
     | '/referral'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/directory'
     | '/history'
+    | '/how-it-works'
     | '/privacy'
     | '/quiz'
     | '/referral'
@@ -185,6 +196,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/directory'
     | '/history'
+    | '/how-it-works'
     | '/privacy'
     | '/quiz'
     | '/referral'
@@ -202,6 +214,7 @@ export interface RootRouteChildren {
   CommunityRoute: typeof CommunityRoute
   DirectoryRoute: typeof DirectoryRoute
   HistoryRoute: typeof HistoryRoute
+  HowItWorksRoute: typeof HowItWorksRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
   ReferralRoute: typeof ReferralRoute
@@ -254,6 +267,13 @@ declare module '@tanstack/react-router' {
       path: '/history'
       fullPath: '/history'
       preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -322,6 +342,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityRoute: CommunityRoute,
   DirectoryRoute: DirectoryRoute,
   HistoryRoute: HistoryRoute,
+  HowItWorksRoute: HowItWorksRoute,
   PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
   ReferralRoute: ReferralRoute,
