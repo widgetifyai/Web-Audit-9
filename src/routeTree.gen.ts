@@ -21,6 +21,7 @@ import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ReferralRouteImport } from './routes/referral'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as UseCasesRouteImport } from './routes/use-cases'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
 import { Route as ApiPublicBadgeIdRouteImport } from './routes/api/public/badge.$id'
 import { Route as ApiPublicShareImageIdRouteImport } from './routes/api/public/share-image.$id'
@@ -85,6 +86,11 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UseCasesRoute = UseCasesRouteImport.update({
+  id: '/use-cases',
+  path: '/use-cases',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportIdRoute = ReportIdRouteImport.update({
   id: '/report/$id',
   path: '/report/$id',
@@ -114,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/referral': typeof ReferralRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
+  '/use-cases': typeof UseCasesRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
@@ -131,6 +138,7 @@ export interface FileRoutesByTo {
   '/referral': typeof ReferralRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
+  '/use-cases': typeof UseCasesRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/referral': typeof ReferralRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
+  '/use-cases': typeof UseCasesRoute
   '/report/$id': typeof ReportIdRoute
   '/api/public/badge/$id': typeof ApiPublicBadgeIdRoute
   '/api/public/share-image/$id': typeof ApiPublicShareImageIdRoute
@@ -168,6 +177,7 @@ export interface FileRouteTypes {
     | '/referral'
     | '/support'
     | '/terms'
+    | '/use-cases'
     | '/report/$id'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/referral'
     | '/support'
     | '/terms'
+    | '/use-cases'
     | '/report/$id'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/referral'
     | '/support'
     | '/terms'
+    | '/use-cases'
     | '/report/$id'
     | '/api/public/badge/$id'
     | '/api/public/share-image/$id'
@@ -220,6 +232,7 @@ export interface RootRouteChildren {
   ReferralRoute: typeof ReferralRoute
   SupportRoute: typeof SupportRoute
   TermsRoute: typeof TermsRoute
+  UseCasesRoute: typeof UseCasesRoute
   ReportIdRoute: typeof ReportIdRoute
   ApiPublicBadgeIdRoute: typeof ApiPublicBadgeIdRoute
   ApiPublicShareImageIdRoute: typeof ApiPublicShareImageIdRoute
@@ -311,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/use-cases': {
+      id: '/use-cases'
+      path: '/use-cases'
+      fullPath: '/use-cases'
+      preLoaderRoute: typeof UseCasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/report/$id': {
       id: '/report/$id'
       path: '/report/$id'
@@ -348,6 +368,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReferralRoute: ReferralRoute,
   SupportRoute: SupportRoute,
   TermsRoute: TermsRoute,
+  UseCasesRoute: UseCasesRoute,
   ReportIdRoute: ReportIdRoute,
   ApiPublicBadgeIdRoute: ApiPublicBadgeIdRoute,
   ApiPublicShareImageIdRoute: ApiPublicShareImageIdRoute,
