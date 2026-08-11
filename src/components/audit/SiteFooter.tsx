@@ -33,6 +33,26 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link to="/how-it-works" className="transition-colors hover:text-foreground">
+                  How it works
+                </Link>
+              </li>
+              <li>
+                <Link to="/use-cases" className="transition-colors hover:text-foreground">
+                  Use cases
+                </Link>
+              </li>
+              <li>
+                <Link to="/quiz" className="transition-colors hover:text-foreground">
+                  Growth quiz
+                </Link>
+              </li>
+              <li>
+                <Link to="/referral" className="transition-colors hover:text-foreground">
+                  Refer &amp; earn
+                </Link>
+              </li>
+              <li>
                 <Link
                   to="/report/$id"
                   params={{ id: "sample" }}
@@ -60,6 +80,11 @@ export function SiteFooter() {
               <li>
                 <Link to="/about" className="transition-colors hover:text-foreground">
                   About WebAudit
+                </Link>
+              </li>
+              <li>
+                <Link to="/roadmap" className="transition-colors hover:text-foreground">
+                  Product roadmap
                 </Link>
               </li>
               <li>
