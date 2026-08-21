@@ -138,10 +138,10 @@ export function SiteFooter() {
             </p>
           </div>
           <Link
-            to="/community"
+            to="https://buymeacoffee.com/iamadnanvv"
             className="text-xs font-medium text-primary underline-offset-4 hover:underline"
           >
-            Join the Widgetify community →
+          BUY ME A COFFEE
           </Link>
         </div>
       </div>
