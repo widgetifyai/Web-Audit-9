@@ -128,12 +128,12 @@ export function SiteFooter() {
             <p className="text-xs text-muted-foreground">
               The platform created by{" "}
               <a
-                href="https://widgetifyai.vercel.app/"
+                href="https://www.linkedin.com/in/iamadnanvv/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-primary underline-offset-4 hover:underline"
               >
-                Widgetify
+                iamadnavv
               </a>
             </p>
           </div>
