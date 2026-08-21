@@ -81,8 +81,8 @@ export function SiteHeader() {
                   </Button>
                 ))}
                 <Button asChild variant="ghost" className="justify-start" onClick={() => setOpen(false)}>
-                  <Link to="/report/$id" params={{ id: "sample" }}>
-                    Sample report
+                  <Link to="https://buymeacoffee.com/iamadnanvv" params={{ id: "sample" }}>
+                    Buy me a Coffee
                   </Link>
                 </Button>
                 <Button asChild variant="hero" className="mt-3" onClick={() => setOpen(false)}>
