@@ -32,6 +32,7 @@ const TITLE = "WebAudit — AI Website Audit in Under a Minute";
 const DESCRIPTION =
   "Analyze any website and get an actionable report covering performance, SEO, accessibility, mobile, UX, conversion and security.";
 
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -117,8 +118,8 @@ function Index() {
               <AuditForm />
               <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
                 <Button asChild variant="soft" size="sm">
-                  <Link to="/report/$id" params={{ id: "sample" }}>
-                    View Sample Report
+                  <Link to="https://buymeacoffee.com/iamadnanvv" params={{ id: "sample" }}>
+                    Buy Me a Coffee
                   </Link>
                 </Button>
                 <span className="text-xs text-muted-foreground">
@@ -259,7 +260,7 @@ function Index() {
 
         <ProWaitlist />
       </main>
-
+        
       <SiteFooter />
     </div>
   );
