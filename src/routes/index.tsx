@@ -123,7 +123,7 @@ function Index() {
                   </Link>
                 </Button>
                 <span className="text-xs text-muted-foreground">
-                  No account needed · No credit card
+                 Your first supporter is closer than you think!
                 </span>
               </div>
             </div>
