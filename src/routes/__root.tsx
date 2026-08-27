@@ -87,7 +87,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "WebAudit" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-    ],
+    {
+      name: "monetag",
+      content: "a81e4557046623482b8f55c1f7398779",
+    },
+   ],               
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -101,7 +105,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
+    
   }),
+  
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
