@@ -91,7 +91,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       name: "monetag",
       content: "a81e4557046623482b8f55c1f7398779",
     },
-   ],               
+   ], 
+
+
+    scripts: [
+  {
+    src: "https://quge5.com/88/tag.min.js",
+    "data-zone": "273829",
+    async: true,
+    "data-cfasync": "false",
+  },
+],
+    
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
