@@ -102,6 +102,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     "data-cfasync": "false",
   },
 ],
+
+     scripts: [
+    {
+      src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6138231275427331",
+      async: true,
+      crossOrigin: "anonymous",
+    },
+  ],
+    
     
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
