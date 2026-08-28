@@ -113,6 +113,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   },
 ],
 
+
+
+    scripts: [
+  {
+    src: "https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js",
+    "data-name": "BMC-Widget",
+    "data-cfasync": "false",
+    "data-id": "iamadnanvv",
+    "data-description": "Support me on Buy me a coffee!",
+    "data-message": "Thanks for using Web Audit Nine. Support us to keep it free.",
+    "data-color": "#5F7FFF",
+    "data-position": "Right",
+    "data-x_margin": "18",
+    "data-y_margin": "18",
+  },
+],
+
+
+
+
+
+
+    
      scripts: [
     {
       src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6138231275427331",
