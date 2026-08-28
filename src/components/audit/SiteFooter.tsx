@@ -95,6 +95,10 @@ export function SiteFooter() {
             </ul>
           </div>
 
+
+          <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="iamadnanvv" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+          
           <div>
             <h3 className="text-sm font-semibold">Legal</h3>
             <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
