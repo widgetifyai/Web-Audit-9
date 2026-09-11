@@ -14,7 +14,7 @@ import { listDirectory, type DirectoryEntry } from "@/lib/audit-history";
 
 const TITLE = "Website Audit Directory — WebAudit";
 const DESCRIPTION =
-  "Discover websites the WebAudit community has audited. Browse top scores, recent submissions, and most-improved sites.";
+  "Discover websites audited with WebAudit. Browse top scores, recent submissions, and most-improved sites.";
 
 type Tab = "recent" | "top" | "improved" | "favorites";
 
@@ -90,7 +90,7 @@ function DirectoryPage() {
           <div>
             <h1 className="text-3xl font-bold sm:text-4xl">Audit directory</h1>
             <p className="mt-2 max-w-xl text-muted-foreground">
-              Websites the community has chosen to share. Discover top performers, recent submissions, and
+              Websites their owners chose to share. Discover top performers, recent submissions, and
               inspiration for your own site.
             </p>
           </div>
@@ -133,7 +133,7 @@ function DirectoryPage() {
             </TabsTrigger>
             <TabsTrigger value="improved" className="gap-2">
               <TrendingUp className="size-4" aria-hidden />
-              Community picks
+              Featured picks
               <Badge variant="secondary" className="ml-1 px-1.5 py-0 text-[10px]">
                 {counts.improved}
               </Badge>
