@@ -60,7 +60,7 @@ export function DirectoryCard({ entry }: { entry: DirectoryEntry }) {
         </Link>
         <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
           <Star className={cn("size-3.5", entry.favorite && "fill-warning text-warning")} aria-hidden />
-          {entry.favorite ? "Community pick" : "Directory entry"}
+          {entry.favorite ? "Featured pick" : "Directory entry"}
         </span>
       </div>
     </article>

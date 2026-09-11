@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 const TITLE = "WebAudit Product Roadmap — What's Shipped and What's Next";
 const DESCRIPTION =
-  "Track what WebAudit has shipped, what's in progress and what's planned next across audits, sharing, community and reporting.";
+  "Track what WebAudit has shipped, what's in progress and what's planned next across audits, store audits, sharing and reporting.";
 
 export const Route = createFileRoute("/roadmap")({
   head: () => ({
@@ -39,7 +39,7 @@ const PHASES: { period: string; status: Status; items: { title: string; copy: st
       { title: "Eight-category audit engine", copy: "Performance, SEO, accessibility, mobile, UX, conversion, security and best practices." },
       { title: "GPT-5.6-Sol reporting", copy: "Plain-language findings with business impact and a prioritised action list." },
       { title: "Report history & sharing", copy: "Local history, shareable report links, score badges and branded share cards." },
-      { title: "Community onboarding & directory", copy: "Six-step unlock flow plus a public directory of audited sites." },
+      { title: "Online Store Audit & directory", copy: "A dedicated ecommerce audit plus a public directory of audited sites." },
       { title: "Emailed reports", copy: "A branded summary lands in your inbox as soon as the report finalises." },
     ],
   },
@@ -71,7 +71,7 @@ function RoadmapPage() {
       <main className="mx-auto max-w-4xl px-5 py-14">
         <h1 className="font-display text-3xl font-bold sm:text-4xl">Product roadmap</h1>
         <p className="mt-3 max-w-2xl text-muted-foreground">
-          WebAudit is built in the open with the Widgetify community. Here's what exists today and
+          WebAudit is built in the open. Here's what exists today and
           what we're working towards.
         </p>
 
@@ -110,12 +110,12 @@ function RoadmapPage() {
         <div className="mt-12 surface-card p-6">
           <h2 className="text-base font-semibold">Shape what ships next</h2>
           <p className="mt-1.5 text-sm text-muted-foreground">
-            Roadmap priority follows community demand. Tell us what you need in the Widgetify Slack
-            or WhatsApp channel.
+            Roadmap priority follows what store owners and builders ask for most. Tell us what you
+            need next.
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="hero">
-              <Link to="/community">Join the community</Link>
+              <Link to="/store-audit">Online Store Audit</Link>
             </Button>
             <Button asChild variant="soft">
               <Link to="/referral">Refer a builder</Link>

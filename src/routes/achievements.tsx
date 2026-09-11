@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 const TITLE = "Achievements — WebAudit";
 const DESCRIPTION =
-  "Track your WebAudit milestones, from your first audit to becoming a community champion.";
+  "Track your WebAudit milestones, from your first audit to auditing your first online store.";
 
 export const Route = createFileRoute("/achievements")({
   head: () => ({
@@ -55,7 +55,7 @@ function AchievementsPage() {
           <div>
             <h1 className="text-3xl font-bold sm:text-4xl">Achievements</h1>
             <p className="mt-2 max-w-xl text-muted-foreground">
-              Every audit, share, and community action moves you forward. Unlock them all.
+              Every audit, share and improvement moves you forward. Unlock them all.
             </p>
           </div>
           <Button variant="soft" size="sm" onClick={() => setUnlocked(resetAchievements() ?? [])}>

@@ -38,7 +38,7 @@ const STEPS = [
   {
     icon: Repeat,
     title: "3. You both level up",
-    copy: "Each invite moves you up a reward tier and keeps every audit free for the community.",
+    copy: "Each invite moves you up a reward tier and keeps every audit free for everyone.",
   },
 ];
 

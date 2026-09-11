@@ -16,7 +16,6 @@ import {
 
 import { AuditForm } from "@/components/audit/AuditForm";
 import { BrowserMockup } from "@/components/audit/BrowserMockup";
-import { CommunityShowcase } from "@/components/audit/CommunityShowcase";
 import { ProWaitlist } from "@/components/audit/ProWaitlist";
 import { SiteFooter } from "@/components/audit/SiteFooter";
 import { SiteHeader } from "@/components/audit/SiteHeader";
@@ -177,8 +176,6 @@ function Index() {
           </div>
         </section>
 
-        <CommunityShowcase />
-
         <section className="border-t border-border/60 py-20">
           <div className="mx-auto max-w-6xl px-5">
             <h2 className="max-w-2xl text-3xl font-bold sm:text-4xl">Go deeper</h2>
@@ -186,11 +183,12 @@ function Index() {
               See how the engine works, who it's built for, where it's heading — or get a
               personalised plan in 60 seconds.
             </p>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 { to: "/how-it-works", title: "How it works", copy: "From URL to ranked action plan in five steps." },
                 { to: "/use-cases", title: "Use cases", copy: "Founders, agencies, stores, local businesses and teams." },
                 { to: "/roadmap", title: "Product roadmap", copy: "What's shipped, what's building, what's next." },
+                { to: "/store-audit", title: "Online Store Audit", copy: "A dedicated ecommerce audit for product pages and checkout." },
                 { to: "/quiz", title: "Growth quiz", copy: "Four questions, one personalised improvement plan." },
               ].map((item) => (
                 <Link
@@ -212,8 +210,7 @@ function Index() {
               <div>
                 <h2 className="max-w-2xl text-3xl font-bold sm:text-4xl">Grow as you audit</h2>
                 <p className="mt-3 max-w-2xl text-muted-foreground">
-                  Complete audits, share reports, and join the community to unlock achievements and
-                  track your progress.
+                  Complete audits, share reports and track your progress as your scores climb.
                 </p>
               </div>
               <Button asChild variant="hero">

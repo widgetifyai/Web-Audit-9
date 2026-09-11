@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sheet";
 
 const NAV_LINKS = [
+  { to: "/store-audit", label: "Online Store Audit" },
   { to: "/how-it-works", label: "How it works" },
   { to: "/use-cases", label: "Use cases" },
   { to: "/roadmap", label: "Roadmap" },
@@ -20,7 +21,6 @@ const NAV_LINKS = [
   { to: "/directory", label: "Directory" },
   { to: "/achievements", label: "Achievements" },
   { to: "/history", label: "History" },
-  { to: "/community", label: "Community" },
   { to: "/about", label: "About" },
 ] as const;
 
@@ -28,8 +28,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-  
-   <header className="no-print sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <header className="no-print sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:flex sm:justify-between">
         <Link to="/" className="flex min-w-0 items-center gap-2.5">
           <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-[image:var(--gradient-primary)] text-primary-foreground">
@@ -38,6 +37,9 @@ export function SiteHeader() {
           <span className="truncate font-display text-lg font-bold">WebAudit</span>
         </Link>
         <nav className="flex items-center gap-1 sm:gap-2">
+          <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
+            <Link to="/store-audit">Online Store Audit</Link>
+          </Button>
           <Button asChild variant="ghost" size="sm" className="hidden lg:inline-flex">
             <Link to="/how-it-works">How it works</Link>
           </Button>
@@ -47,14 +49,8 @@ export function SiteHeader() {
           <Button asChild variant="ghost" size="sm" className="hidden lg:inline-flex">
             <Link to="/roadmap">Roadmap</Link>
           </Button>
-          <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
-            <Link to="/quiz">Growth quiz</Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
+          <Button asChild variant="ghost" size="sm" className="hidden lg:inline-flex">
             <Link to="/directory">Directory</Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
-            <Link to="/referral">Refer</Link>
           </Button>
           <Button asChild variant="hero" size="sm">
             <Link to="/">Start audit</Link>
@@ -81,11 +77,6 @@ export function SiteHeader() {
                     <Link to={item.to}>{item.label}</Link>
                   </Button>
                 ))}
-                <Button asChild variant="ghost" className="justify-start" onClick={() => setOpen(false)}>
-                  <Link to="https://buymeacoffee.com/iamadnanvv" params={{ id: "sample" }}>
-                    Buy me a Coffee
-                  </Link>
-                </Button>
                 <Button asChild variant="hero" className="mt-3" onClick={() => setOpen(false)}>
                   <Link to="/">Start free audit</Link>
                 </Button>

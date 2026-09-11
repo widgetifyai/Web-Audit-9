@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AchievementsRouteImport } from './routes/achievements'
-import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
@@ -20,6 +19,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ReferralRouteImport } from './routes/referral'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
+import { Route as StoreAuditRouteImport } from './routes/store-audit'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as UseCasesRouteImport } from './routes/use-cases'
@@ -40,11 +40,6 @@ const AboutRoute = AboutRouteImport.update({
 const AchievementsRoute = AchievementsRouteImport.update({
   id: '/achievements',
   path: '/achievements',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommunityRoute = CommunityRouteImport.update({
-  id: '/community',
-  path: '/community',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DirectoryRoute = DirectoryRouteImport.update({
@@ -82,6 +77,11 @@ const RoadmapRoute = RoadmapRouteImport.update({
   path: '/roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StoreAuditRoute = StoreAuditRouteImport.update({
+  id: '/store-audit',
+  path: '/store-audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -117,7 +117,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -125,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/quiz': typeof QuizRoute
   '/referral': typeof ReferralRoute
   '/roadmap': typeof RoadmapRoute
+  '/store-audit': typeof StoreAuditRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/use-cases': typeof UseCasesRoute
@@ -136,7 +136,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -144,6 +143,7 @@ export interface FileRoutesByTo {
   '/quiz': typeof QuizRoute
   '/referral': typeof ReferralRoute
   '/roadmap': typeof RoadmapRoute
+  '/store-audit': typeof StoreAuditRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/use-cases': typeof UseCasesRoute
@@ -156,7 +156,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -164,6 +163,7 @@ export interface FileRoutesById {
   '/quiz': typeof QuizRoute
   '/referral': typeof ReferralRoute
   '/roadmap': typeof RoadmapRoute
+  '/store-audit': typeof StoreAuditRoute
   '/support': typeof SupportRoute
   '/terms': typeof TermsRoute
   '/use-cases': typeof UseCasesRoute
@@ -177,7 +177,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
-    | '/community'
     | '/directory'
     | '/history'
     | '/how-it-works'
@@ -185,6 +184,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/referral'
     | '/roadmap'
+    | '/store-audit'
     | '/support'
     | '/terms'
     | '/use-cases'
@@ -196,7 +196,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
-    | '/community'
     | '/directory'
     | '/history'
     | '/how-it-works'
@@ -204,6 +203,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/referral'
     | '/roadmap'
+    | '/store-audit'
     | '/support'
     | '/terms'
     | '/use-cases'
@@ -215,7 +215,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
-    | '/community'
     | '/directory'
     | '/history'
     | '/how-it-works'
@@ -223,6 +222,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/referral'
     | '/roadmap'
+    | '/store-audit'
     | '/support'
     | '/terms'
     | '/use-cases'
@@ -235,7 +235,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AchievementsRoute: typeof AchievementsRoute
-  CommunityRoute: typeof CommunityRoute
   DirectoryRoute: typeof DirectoryRoute
   HistoryRoute: typeof HistoryRoute
   HowItWorksRoute: typeof HowItWorksRoute
@@ -243,6 +242,7 @@ export interface RootRouteChildren {
   QuizRoute: typeof QuizRoute
   ReferralRoute: typeof ReferralRoute
   RoadmapRoute: typeof RoadmapRoute
+  StoreAuditRoute: typeof StoreAuditRoute
   SupportRoute: typeof SupportRoute
   TermsRoute: typeof TermsRoute
   UseCasesRoute: typeof UseCasesRoute
@@ -272,13 +272,6 @@ declare module '@tanstack/react-router' {
       path: '/achievements'
       fullPath: '/achievements'
       preLoaderRoute: typeof AchievementsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/community': {
-      id: '/community'
-      path: '/community'
-      fullPath: '/community'
-      preLoaderRoute: typeof CommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/directory': {
@@ -330,6 +323,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/store-audit': {
+      id: '/store-audit'
+      path: '/store-audit'
+      fullPath: '/store-audit'
+      preLoaderRoute: typeof StoreAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
@@ -379,7 +379,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AchievementsRoute: AchievementsRoute,
-  CommunityRoute: CommunityRoute,
   DirectoryRoute: DirectoryRoute,
   HistoryRoute: HistoryRoute,
   HowItWorksRoute: HowItWorksRoute,
@@ -387,6 +386,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuizRoute: QuizRoute,
   ReferralRoute: ReferralRoute,
   RoadmapRoute: RoadmapRoute,
+  StoreAuditRoute: StoreAuditRoute,
   SupportRoute: SupportRoute,
   TermsRoute: TermsRoute,
   UseCasesRoute: UseCasesRoute,

@@ -1,9 +1,9 @@
 import {
   Award,
   Bookmark,
-  Heart,
   Medal,
   RefreshCw,
+  ShoppingCart,
   Share2,
   Star,
   Target,
@@ -15,7 +15,7 @@ import type { AuditReport } from "./audit-types";
 
 export type AchievementId =
   | "first-audit"
-  | "community-champion"
+  | "store-auditor"
   | "score-hunter"
   | "sharpshooter"
   | "high-performer"
@@ -38,10 +38,10 @@ export const ACHIEVEMENTS: Achievement[] = [
     icon: Target,
   },
   {
-    id: "community-champion",
-    name: "Community Champion",
-    description: "Complete the Widgetify community onboarding.",
-    icon: Heart,
+    id: "store-auditor",
+    name: "Store Auditor",
+    description: "Run an Online Store Audit on an ecommerce site.",
+    icon: ShoppingCart,
   },
   {
     id: "score-hunter",

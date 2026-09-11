@@ -111,7 +111,7 @@ export function ReportView({ report }: { report: AuditReport }) {
       setInDirectory(true);
       unlockAndNotify("directory-contributor");
       toast.success("Added to public directory", {
-        description: "Your audit is now discoverable by the community.",
+        description: "Your audit is now discoverable in the public directory.",
       });
     }
   };
@@ -272,7 +272,7 @@ export function ReportView({ report }: { report: AuditReport }) {
               Grow this audit
             </h2>
             <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-              Add this report to the public directory, embed a score badge, or share it with your community to drive discovery.
+              Add this report to the public directory, embed a score badge, or share it with your team to drive discovery.
             </p>
             <ReAuditPrompt hostname={hostname} url={report.url} />
           </div>
