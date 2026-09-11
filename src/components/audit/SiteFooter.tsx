@@ -2,8 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { Gauge } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { CommunityLinks } from "@/components/audit/CommunityLinks";
-
 export function SiteFooter() {
   const [year, setYear] = useState(2026);
   useEffect(() => setYear(new Date().getFullYear()), []);
@@ -19,8 +17,8 @@ export function SiteFooter() {
               <span className="font-display text-lg font-bold">WebAudit</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              GPT-5.6-Sol powered website audits that turn technical detail into decisions your business can
-              act on.
+              GPT-5.6-Sol powered website and online store audits that turn technical detail into
+              decisions your business can act on.
             </p>
           </div>
 
@@ -30,6 +28,11 @@ export function SiteFooter() {
               <li>
                 <Link to="/" className="transition-colors hover:text-foreground">
                   Run an audit
+                </Link>
+              </li>
+              <li>
+                <Link to="/store-audit" className="transition-colors hover:text-foreground">
+                  Online Store Audit
                 </Link>
               </li>
               <li>
@@ -66,11 +69,6 @@ export function SiteFooter() {
                   Audit history
                 </Link>
               </li>
-              <li>
-                <Link to="/community" className="transition-colors hover:text-foreground">
-                  Community
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -88,6 +86,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link to="/directory" className="transition-colors hover:text-foreground">
+                  Audit directory
+                </Link>
+              </li>
+              <li>
                 <Link to="/support" className="transition-colors hover:text-foreground">
                   Contact &amp; support
                 </Link>
@@ -95,10 +98,6 @@ export function SiteFooter() {
             </ul>
           </div>
 
-
-          <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="iamadnanvv" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
-
-          
           <div>
             <h3 className="text-sm font-semibold">Legal</h3>
             <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
@@ -116,36 +115,15 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border/60 pt-8">
-          <h3 className="text-sm font-semibold">Community</h3>
-          <p className="mt-1.5 max-w-md text-sm text-muted-foreground">
-            Follow along and get help with your audit findings from other builders.
-          </p>
-          <CommunityLinks className="mt-4" />
-        </div>
-
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center">
-          <div className="space-y-1">
-            <p className="text-xs text-muted-foreground">
-              © {year} WebAudit. All rights reserved.
-            </p>
-            <p className="text-xs text-muted-foreground">
-              The platform created by{" "}
-              <a
-                href="https://www.linkedin.com/in/iamadnanvv/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-primary underline-offset-4 hover:underline"
-              >
-                iamadnavv
-              </a>
-            </p>
-          </div>
+          <p className="text-xs text-muted-foreground">
+            © {year} WebAudit. All rights reserved.
+          </p>
           <Link
-            to="https://buymeacoffee.com/iamadnanvv"
+            to="/store-audit"
             className="text-xs font-medium text-primary underline-offset-4 hover:underline"
           >
-          BUY ME A COFFEE
+            Start an Online Store Audit
           </Link>
         </div>
       </div>
