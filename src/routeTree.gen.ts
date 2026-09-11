@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AchievementsRouteImport } from './routes/achievements'
-import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DirectoryRouteImport } from './routes/directory'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
@@ -40,11 +39,6 @@ const AboutRoute = AboutRouteImport.update({
 const AchievementsRoute = AchievementsRouteImport.update({
   id: '/achievements',
   path: '/achievements',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommunityRoute = CommunityRouteImport.update({
-  id: '/community',
-  path: '/community',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DirectoryRoute = DirectoryRouteImport.update({
@@ -117,7 +111,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -136,7 +129,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -156,7 +148,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/community': typeof CommunityRoute
   '/directory': typeof DirectoryRoute
   '/history': typeof HistoryRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -177,7 +168,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
-    | '/community'
     | '/directory'
     | '/history'
     | '/how-it-works'
@@ -196,7 +186,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
-    | '/community'
     | '/directory'
     | '/history'
     | '/how-it-works'
@@ -215,7 +204,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
-    | '/community'
     | '/directory'
     | '/history'
     | '/how-it-works'
@@ -235,7 +223,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AchievementsRoute: typeof AchievementsRoute
-  CommunityRoute: typeof CommunityRoute
   DirectoryRoute: typeof DirectoryRoute
   HistoryRoute: typeof HistoryRoute
   HowItWorksRoute: typeof HowItWorksRoute
@@ -272,13 +259,6 @@ declare module '@tanstack/react-router' {
       path: '/achievements'
       fullPath: '/achievements'
       preLoaderRoute: typeof AchievementsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/community': {
-      id: '/community'
-      path: '/community'
-      fullPath: '/community'
-      preLoaderRoute: typeof CommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/directory': {
@@ -379,7 +359,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AchievementsRoute: AchievementsRoute,
-  CommunityRoute: CommunityRoute,
   DirectoryRoute: DirectoryRoute,
   HistoryRoute: HistoryRoute,
   HowItWorksRoute: HowItWorksRoute,
